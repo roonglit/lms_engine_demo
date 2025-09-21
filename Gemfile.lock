@@ -3,6 +3,7 @@ PATH
   specs:
     lms (0.1.0)
       rails (>= 8.1.0.beta1)
+      slim-rails
 
 GEM
   remote: https://rubygems.org/
@@ -223,9 +224,22 @@ GEM
       rubocop-rails (>= 2.30)
     ruby-progressbar (1.13.0)
     securerandom (0.4.1)
+    slim (5.2.1)
+      temple (~> 0.10.0)
+      tilt (>= 2.1.0)
+    slim-rails (3.7.0)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+      slim (>= 3.0, < 6.0, != 5.0.0)
     sqlite3 (2.7.4-x86_64-linux-gnu)
     stringio (3.1.7)
+    tailwindcss-rails (4.3.0)
+      railties (>= 7.0.0)
+      tailwindcss-ruby (~> 4.0)
+    tailwindcss-ruby (4.1.13-x86_64-linux-gnu)
+    temple (0.10.4)
     thor (1.4.0)
+    tilt (2.6.1)
     timeout (0.4.3)
     tsort (0.2.0)
     tzinfo (2.0.6)
@@ -249,7 +263,9 @@ DEPENDENCIES
   propshaft
   puma
   rubocop-rails-omakase
+  slim-rails
   sqlite3
+  tailwindcss-rails
 
 BUNDLED WITH
    2.6.9

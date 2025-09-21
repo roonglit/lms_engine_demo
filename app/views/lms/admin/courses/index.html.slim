@@ -1,0 +1,20 @@
+.flex.items-center.justify-between
+  h3.text-lg.font-medium Courses
+  .breadcrumbs.hidden.p-0.text-sm class='sm:inline'
+    ul
+      li LMS
+      li
+        = link_to_unless_current "Courses", lms.admin_courses_path
+
+.mt-6 
+  .bg-base-100.card.shadow 
+    .card-body.p-0 
+      .flex.items-center.justify-between.px-5.pt-5 
+        .inline-flex.items-center.gap-3 
+          label.input.input-sm
+            span.iconify.lucide--search.size-3.5.text-base-content/80
+            input.w-24 class="sm:w-36" placeholder='Search courses...' aria-label='Search courses' type='search'
+        .inline-flex.items-center.gap-3
+          = link_to lms.new_admin_course_path, class: 'btn btn-primary btn-sm max-sm:btn-square', html: { "aria-label": "Create course link"} do
+            span.iconify.lucide--plus.size-4
+            span.hidden class='sm:inline' New Course

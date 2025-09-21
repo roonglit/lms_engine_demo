@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   namespace :admin do
     mount Lms::Engine => "/lms"
   end
+
+  root to: "admin/lms/courses#index"
 end

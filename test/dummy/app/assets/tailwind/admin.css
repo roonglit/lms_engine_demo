@@ -1,0 +1,7 @@
+@import "tailwindcss" source(none);
+
+@source "./../../views/**/*";
+
+@import "./admin/daisyui.css";
+@import "./admin/layout.css";
+@import "./admin/iconify.css";

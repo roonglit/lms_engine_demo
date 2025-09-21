@@ -1,0 +1,5 @@
+@import "tailwindcss" source(none);
+
+@source "./../../../views/**/*";
+
+@import "./admin/iconify.css";
