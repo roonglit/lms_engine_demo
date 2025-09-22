@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_09_21_070837) do
+ActiveRecord::Schema[8.1].define(version: 2025_09_22_072322) do
   create_table "lms_courses", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "description"
@@ -18,4 +18,23 @@ ActiveRecord::Schema[8.1].define(version: 2025_09_21_070837) do
     t.string "title"
     t.datetime "updated_at", null: false
   end
+
+  create_table "lms_curriculum_items", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "section_id", null: false
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.index ["section_id"], name: "index_lms_curriculum_items_on_section_id"
+  end
+
+  create_table "lms_sections", force: :cascade do |t|
+    t.integer "course_id", null: false
+    t.datetime "created_at", null: false
+    t.string "name"
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_lms_sections_on_course_id"
+  end
+
+  add_foreign_key "lms_curriculum_items", "sections"
+  add_foreign_key "lms_sections", "courses"
 end

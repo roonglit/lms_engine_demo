@@ -5,5 +5,5 @@ Rails.application.routes.draw do
     mount Lms::Engine => "/lms"
   end
 
-  root to: "admin/lms/courses#index"
+  root to: "lms/home#index"
 end

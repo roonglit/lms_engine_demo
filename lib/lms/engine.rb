@@ -1,3 +1,5 @@
+require "simple_form"
+
 module Lms
   class Engine < ::Rails::Engine
     isolate_namespace Lms

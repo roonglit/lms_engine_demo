@@ -24,6 +24,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", ">= 8.1.0.beta1"
   spec.add_dependency "slim-rails"
+  spec.add_dependency "simple_form"
 
   spec.add_development_dependency "tailwindcss-rails"
 end

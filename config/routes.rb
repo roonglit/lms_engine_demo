@@ -6,4 +6,6 @@ Lms::Engine.routes.draw do
 	end
 
   resources :courses
+
+	root to: "home#index"
 end

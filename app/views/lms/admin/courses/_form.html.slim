@@ -1,0 +1,24 @@
+= simple_form_for course, url: lms.admin_courses_path do |form|
+  - if course.errors.any?
+    div style="color: red"
+      h2 = "#{pluralize(course.errors.count, "error")} prohibited this course from being saved:"
+
+      ul
+        course.errors.each do |error|
+          li = error.full_message
+
+  .mt-6
+    .grid.grid-cols-1.gap-6
+      .card.bg-base-100.shadow
+        .card-body
+          .card-title Basic Information
+          = form.input :title
+          = form.input :subtitle
+          = form.input :description
+    .mt-6.flex.justify-end.gap-3      
+      // Capture and render the block passed from the calling template
+      - if block_given?
+        = yield(form)
+      - else
+        = form.submit "Save", class: "btn btn-primary btn-wide mt-4 max-w-full gap-3 md:mt-6"
+  
