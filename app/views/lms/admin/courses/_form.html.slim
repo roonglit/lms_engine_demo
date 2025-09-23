@@ -1,4 +1,6 @@
-= simple_form_for course, url: lms.admin_courses_path do |form|
+- url = course.new_record? ? lms.admin_courses_path : lms.admin_course_path(course)
+
+= simple_form_for course, url: url do |form|
   - if course.errors.any?
     div style="color: red"
       h2 = "#{pluralize(course.errors.count, "error")} prohibited this course from being saved:"

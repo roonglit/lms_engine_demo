@@ -1018,22 +1018,9 @@
   .lucide--trash {
     --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2'/%3E%3C/svg%3E");
   }
-  .lucide--trash-2 {
-    --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' width='24' height='24'%3E%3Cpath fill='none' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M10 11v6m4-6v6m5-11v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2'/%3E%3C/svg%3E");
-  }
   .\*\:text-nowrap {
     :is(& > *) {
       text-wrap: nowrap;
-    }
-  }
-  .hover\:bg-base-200\/4 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-base-200);
-        @supports (color: color-mix(in lab, red, red)) {
-          background-color: color-mix(in oklab, var(--color-base-200) 4%, transparent);
-        }
-      }
     }
   }
   .hover\:bg-base-200\/40 {
@@ -1066,6 +1053,11 @@
   .md\:mt-6 {
     @media (width >= 48rem) {
       margin-top: calc(var(--spacing) * 6);
+    }
+  }
+  .md\:grid-cols-2 {
+    @media (width >= 48rem) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 }
