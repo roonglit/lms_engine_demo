@@ -55,7 +55,7 @@ module Lms
 
         # Only allow a list of trusted parameters through.
         def course_params
-          params.expect(course: [ :title, :subtitle, :description, :content ])
+          params.expect(course: [ :title, :subtitle, :description, :content, :cover ])
         end
     end
   end
