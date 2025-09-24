@@ -17,6 +17,7 @@
           = form.input :title
           = form.input :subtitle
           = form.input :description
+          = form.rich_textarea :content
     .mt-6.flex.justify-end.gap-3      
       // Capture and render the block passed from the calling template
       - if block_given?
