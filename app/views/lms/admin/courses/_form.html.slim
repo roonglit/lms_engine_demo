@@ -1,6 +1,6 @@
 - url = course.new_record? ? lms.admin_courses_path : lms.admin_course_path(course)
 
-= simple_form_for course, url: url do |form|
+= simple_form_for course, url: url, data: { controller: "course"} do |form|
   - if course.errors.any?
     div style="color: red"
       h2 = "#{pluralize(course.errors.count, "error")} prohibited this course from being saved:"
@@ -10,7 +10,7 @@
           li = error.full_message
 
   .mt-6
-    .grid.grid-cols-1.gap-6
+    .grid.grid-cols-1.gap-6.md:grid-cols-2  
       .card.bg-base-100.shadow
         .card-body
           .card-title Basic Information
@@ -18,7 +18,11 @@
           = form.input :subtitle
           = form.input :description
           = form.input :content, as: :rich_textarea
-          = form.file_field :cover
+      .card.bg-base-100.shadow 
+        .card-body 
+          .card-title Cover Image
+          .mt-5
+            = form.file_field :cover, class: "filepond", direct_upload: true, accept: 'image/*', data: { "course-target": "filepond"}
     .mt-6.flex.justify-end.gap-3      
       // Capture and render the block passed from the calling template
       - if block_given?
