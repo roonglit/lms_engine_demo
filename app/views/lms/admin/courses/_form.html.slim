@@ -39,7 +39,9 @@ div data-controller="filepond"
           .card-body 
             .card-title Curriculum 
             .mt-5 
-              p curriculum
+              = form.simple_fields_for :sections do |sections_form|
+                sections_form.input :name
+                sections_form.input :_destroy, as: :hidden, type: :boolean
     .mt-6.flex.justify-end.gap-3      
       // Capture and render the block passed from the calling template
       - if block_given?

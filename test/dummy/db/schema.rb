@@ -59,8 +59,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_09_24_055408) do
 
   create_table "lms_curriculum_items", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.string "name"
     t.integer "section_id", null: false
-    t.string "title"
     t.datetime "updated_at", null: false
     t.index ["section_id"], name: "index_lms_curriculum_items_on_section_id"
   end
@@ -75,6 +75,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_09_24_055408) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "lms_curriculum_items", "sections"
-  add_foreign_key "lms_sections", "courses"
+  add_foreign_key "lms_curriculum_items", "lms_sections", column: "section_id"
+  add_foreign_key "lms_sections", "lms_courses", column: "course_id"
 end
