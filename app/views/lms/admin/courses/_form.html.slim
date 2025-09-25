@@ -22,6 +22,8 @@ div data-controller="filepond"
         .card.bg-base-100.shadow 
           .card-body 
             .card-title Cover Image
+            .mt-5 
+              = image_tag course.cover.url if course.cover.attached?
             .mt-5
               = form.file_field :cover, class: "filepond", direct_upload: true, accept: 'image/*', data: { "filepond-target": "input"}
       .mt-6.flex.justify-end.gap-3      
