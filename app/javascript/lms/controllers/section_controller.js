@@ -8,14 +8,7 @@ export default class extends Controller {
 
   removeSection(event) {
     event.preventDefault();
-
-    console.log("targets:", this.checkboxTarget);
-
     this.checkboxTarget.checked = true;
-
-    console.log("targets:", this.checkboxTarget);
-    
-    // add hidden class to this section element
-    // this.element.classList.add("hidden")
+    this.element.classList.add("hidden")
   }
 }

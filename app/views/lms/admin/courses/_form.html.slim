@@ -37,11 +37,12 @@ div data-controller="filepond"
     .mt-6
       .grid.grid-cols-1.gap-6
         .card.bg-base-100.shadow 
-          .card-body data-controller="lms--course"
+          .card-body data-controller="lms--curriculum"
             .card-title Curriculum 
-            .mt-5
+            .mt-5 data-lms--curriculum-target="container"
               = form.simple_fields_for :sections do |section_fields|
                 = render 'section_fields', form: section_fields
+              = link_to_add_fields "Add Section", form, :sections, "lms--curriculum", action: "click->lms--curriculum#addSection"
     .mt-6.flex.justify-end.gap-3      
       // Capture and render the block passed from the calling template
       - if block_given?
