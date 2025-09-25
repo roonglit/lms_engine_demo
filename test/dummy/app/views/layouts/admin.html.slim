@@ -6,7 +6,7 @@ html
     meta name="apple-mobile-web-app-capable" content="yes"
     meta name="application-name" content="Onerev"
     meta name="mobile-web-app-capable" content="yes"
-    = 
+    = csrf_meta_tags
     = csp_meta_tag
 
     = yield :head
@@ -28,7 +28,7 @@ html
       .flex
         = render "layouts/admin/sidebar"
 
-        .flex-h-screen.min-w-0.grow.flex-col.overflow-auto
+        .flex.h-screen.min-w-0.grow.flex-col.overflow-auto
           = render "layouts/admin/topbar"
           #layout-content
             = yield

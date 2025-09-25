@@ -18,7 +18,7 @@ div data-controller="filepond"
             = form.input :title
             = form.input :subtitle
             = form.input :description
-            = form.input :content, as: :rich_textarea
+            
         .card.bg-base-100.shadow 
           .card-body 
             .card-title Cover Image
@@ -26,6 +26,13 @@ div data-controller="filepond"
               = image_tag course.cover.url if course.cover.attached?
             .mt-5
               = form.file_field :cover, class: "filepond", direct_upload: true, accept: 'image/*', data: { "filepond-target": "input"}
+    .mt-6
+      .grid.grid-cols-1.gap-6
+        .card.bg-base-100.shadow 
+          .card-body 
+            .card-title Content 
+            .mt-5 
+              = form.input :content, as: :rich_textarea
       .mt-6.flex.justify-end.gap-3      
         // Capture and render the block passed from the calling template
         - if block_given?

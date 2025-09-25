@@ -7,5 +7,5 @@ Lms::Engine.routes.draw do
 
   resources :courses
 
-	root to: "home#index"
+	root to: "courses#index"
 end
