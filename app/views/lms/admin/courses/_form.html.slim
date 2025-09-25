@@ -22,8 +22,9 @@ div data-controller="filepond"
         .card.bg-base-100.shadow 
           .card-body 
             .card-title Cover Image
-            .mt-5 
-              = image_tag course.cover.url if course.cover.attached?
+            - if course.cover.attached?
+              .mt-5 
+                = image_tag course.cover.url
             .mt-5
               = form.file_field :cover, class: "filepond", direct_upload: true, accept: 'image/*', data: { "filepond-target": "input"}
     .mt-6
@@ -36,12 +37,11 @@ div data-controller="filepond"
     .mt-6
       .grid.grid-cols-1.gap-6
         .card.bg-base-100.shadow 
-          .card-body 
+          .card-body data-controller="lms--course"
             .card-title Curriculum 
-            .mt-5 
-              = form.simple_fields_for :sections do |sections_form|
-                sections_form.input :name
-                sections_form.input :_destroy, as: :hidden, type: :boolean
+            .mt-5
+              = form.simple_fields_for :sections do |section_fields|
+                = render 'section_fields', form: section_fields
     .mt-6.flex.justify-end.gap-3      
       // Capture and render the block passed from the calling template
       - if block_given?

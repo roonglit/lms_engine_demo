@@ -1,0 +1,7 @@
+div data-controller="lms--section"
+  = form.input :name
+  = form.check_box :_destroy, value: 0, data: { "lms--section-target": "checkbox" }
+  = form.label :_destroy, "Remove Section"
+  a data-action="click->lms--section#removeSection" href="#" Remove Section
+  = form.simple_fields_for :curriculum_items do |curriculum_item_fields|
+    = render 'curriculum_item_fields', form: curriculum_item_fields
