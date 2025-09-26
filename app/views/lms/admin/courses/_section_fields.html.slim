@@ -1,7 +1,9 @@
-div data-controller="lms--section"
-  = form.input :name
-  = form.check_box :_destroy, value: 0, data: { "lms--section-target": "checkbox" }
-  = form.label :_destroy, "Remove Section"
-  a data-action="click->lms--section#removeSection" href="#" Remove Section
-  = form.simple_fields_for :curriculum_items do |curriculum_item_fields|
-    = render 'curriculum_item_fields', form: curriculum_item_fields
+.card.card-border.bg-primary/5.border-primary/10.my-3 data-controller="lms--section"
+  .card-body.p-4
+    .flex.items-center.justify-between   
+      = form.input :name, label: "Section Name", wrapper: :inline
+      = link_to "#", data: { action: "click->lms--section#removeSection" } do 
+        span.iconify.lucide--trash.size-4
+    / = form.hidden_field :_destroy, value: 0
+    = form.check_box :_destroy, value: 1, data: { "lms--section-target": "checkbox" }, class: 'hidden'
+    

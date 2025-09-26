@@ -23,20 +23,28 @@ module Lms
 
       # POST /admin/courses
       def create
+        Rails.logger.debug "Raw params: #{params.inspect}"
+        Rails.logger.debug "Course params: #{course_params.inspect}"
+        
         @course = Course.new(course_params)
 
         if @course.save
           redirect_to @course, notice: "Course was successfully created."
         else
+          Rails.logger.debug "Course errors: #{@course.errors.full_messages}"
           render :new, status: :unprocessable_content
         end
       end
 
       # PATCH/PUT /admin/courses/1
       def update
+        Rails.logger.debug "Raw params: #{params.inspect}"
+        Rails.logger.debug "Course params: #{course_params.inspect}"
+        
         if @course.update(course_params)
           redirect_to @course, notice: "Course was successfully updated.", status: :see_other
         else
+          Rails.logger.debug "Course errors: #{@course.errors.full_messages}"
           render :edit, status: :unprocessable_content
         end
       end
@@ -55,7 +63,10 @@ module Lms
 
         # Only allow a list of trusted parameters through.
         def course_params
-          params.expect(course: [ :title, :subtitle, :description, :content, :cover ])
+          params.expect(course: [ 
+            :title, :subtitle, :description, :content, :cover, 
+            sections_attributes: [[:id, :name, :_destroy]]
+          ])
         end
     end
   end

@@ -3,20 +3,34 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["container"]
   static values = {
-    template: String
+    template: String,
+    templateId: Number
   }
 
   connect() {
-    console.log("value: ", this.templateValue);
   }
 
   addSection(event) {
     event.preventDefault();
 
-    const template = this.templateValue;
+    // Use the controller's templateValue and templateIdValue
+    if (!this.templateValue) {
+      console.error("No template value found");
+      return;
+    }
 
+    // Use the placeholder ID from the controller's templateIdValue
+    const placeholderId = this.templateIdValue;
+    
+    // Generate unique timestamp-based ID
+    const uniqueId = new Date().getTime();
+    
+    // Replace the placeholder ID with the unique timestamp
+    const regexp = new RegExp(placeholderId, 'g');
+    const template = this.templateValue.replace(regexp, uniqueId);
+
+    // Insert the processed template
     const container = this.containerTarget;
     container.insertAdjacentHTML('beforeend', template);
-    console.log("section template:", this.templateValue);
   }
 }

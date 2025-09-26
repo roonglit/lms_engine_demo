@@ -37,12 +37,14 @@ div data-controller="filepond"
     .mt-6
       .grid.grid-cols-1.gap-6
         .card.bg-base-100.shadow 
-          .card-body data-controller="lms--curriculum"
+          - template_data = template_data_for(form, :sections)
+          .card-body data-controller="lms--curriculum" data={"lms--curriculum-template-value": template_data[:template], "lms--curriculum-template-id-value": template_data[:id]}
             .card-title Curriculum 
-            .mt-5 data-lms--curriculum-target="container"
-              = form.simple_fields_for :sections do |section_fields|
-                = render 'section_fields', form: section_fields
-              = link_to_add_fields "Add Section", form, :sections, "lms--curriculum", action: "click->lms--curriculum#addSection"
+            div
+              .container data-lms--curriculum-target="container"
+                = form.simple_fields_for :sections do |section_fields|
+                  = render 'section_fields', form: section_fields
+              = link_to "Add Section", "#", data: { action: "click->lms--curriculum#addSection" }, class: "btn btn-outline"
     .mt-6.flex.justify-end.gap-3      
       // Capture and render the block passed from the calling template
       - if block_given?
