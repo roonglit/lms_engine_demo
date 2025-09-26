@@ -1,1 +1,10 @@
-= form.input :name
+.card.card-border.border-base-300.bg-white data-controller="lms--curriculum-item" 
+  .card-body.px-4.pt-3.pb-2 
+    div 
+      .flex.items-center.justify-between 
+        span.font-medium.max-sm:text-sm 
+          = form.input :name, label: "Lecture: ", wrapper: :inline
+          = form.check_box :_destroy, value: 1, data: { "lms--curriculum-item-target": "checkbox" }, class: 'hidden'
+        .inline-flex.gap-2
+          = link_to "#", data: { action: "click->lms--curriculum-item#removeCurriculumItem" } do
+            span.iconify.lucide--x-circle.text-error.size-4

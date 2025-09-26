@@ -65,7 +65,12 @@ module Lms
         def course_params
           params.expect(course: [ 
             :title, :subtitle, :description, :content, :cover, 
-            sections_attributes: [[:id, :name, :_destroy]]
+            sections_attributes: [[
+              :id, :name, :_destroy,
+              curriculum_items_attributes: [[
+                :id, :name, :_destroy
+              ]]
+            ]]
           ])
         end
     end

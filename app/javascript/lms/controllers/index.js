@@ -2,7 +2,9 @@
 import { application } from "controllers/application"
 import CurriculumController from "lms/controllers/curriculum_controller"
 import SectionController from "lms/controllers/section_controller"
+import CurriculumItemController from "lms/controllers/curriculum_item_controller"
 
 // Register the course controller with the lms-- prefix
 application.register("lms--curriculum", CurriculumController)
 application.register("lms--section", SectionController)
+application.register("lms--curriculum-item", CurriculumItemController)

@@ -1,9 +1,14 @@
-.card.card-border.bg-primary/5.border-primary/10.my-3 data-controller="lms--section"
+- template_data = template_data_for(form, :curriculum_items)
+.card.card-border.bg-primary/5.border-primary/10.my-3 data-controller="lms--section" data={"lms--section-template-value": template_data[:template], "lms--section-template-id-value": template_data[:id]}
   .card-body.p-4
     .flex.items-center.justify-between   
       = form.input :name, label: "Section Name", wrapper: :inline
       = link_to "#", data: { action: "click->lms--section#removeSection" } do 
         span.iconify.lucide--trash.size-4
-    / = form.hidden_field :_destroy, value: 0
     = form.check_box :_destroy, value: 1, data: { "lms--section-target": "checkbox" }, class: 'hidden'
+    .mt-4
+      .space-y-1 data-lms--section-target="container"
+        = form.simple_fields_for :curriculum_items do |curriculum_item_fields|
+          = render 'curriculum_item_fields', form: curriculum_item_fields
+      = link_to "Add Curriculum Item", "#", data: { action: "click->lms--section#addCurriculumItem" }, class: "btn btn-outline mt-2"
     
