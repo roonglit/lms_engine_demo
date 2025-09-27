@@ -16,13 +16,13 @@ module Lms
 
     initializer "lms.assets" do |app|
       app.config.assets.paths << root.join("app/javascript")
+      
     end
 
     # Make sure engine's importmap is loaded after main app's importmap
-    initializer "lms.importmap", after: "importmap" do |app|
-      if app.config.respond_to?(:importmap)
-        app.config.importmap.paths << root.join("config/importmap.rb")
-      end
+    initializer "lms.importmap", before: "importmap" do |app|
+      app.config.importmap.paths << root.join("config/importmap.rb")
+      app.config.importmap.cache_sweepers << root.join("app/javascript")
     end
   end
 end

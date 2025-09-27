@@ -1,7 +1,5 @@
 # Pin the controllers index
-pin "lms/controllers", to: "lms/controllers/index.js"
+# pin "lms/controllers", to: "lms/controllers/index.js"
 
-# Explicitly pin individual controllers
-pin "lms/controllers/curriculum_controller", to: "lms/controllers/curriculum_controller.js"
-pin "lms/controllers/section_controller", to: "lms/controllers/section_controller.js"
-pin "lms/controllers/curriculum_item_controller", to: "lms/controllers/curriculum_item_controller.js"
+# pin "controllers/lms", to: Lms::Engine.root.join("app/javascript/controllers/lms/index.js")
+pin_all_from Lms::Engine.root.join("app/javascript/controllers/lms"), under: "controllers/lms"
