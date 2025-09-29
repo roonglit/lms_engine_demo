@@ -1,16 +1,48 @@
-<p style="color: green"><%= notice %></p>
+- content_for :title, "Courses"
 
-<% content_for :title, "Courses" %>
+/ Hero Section
+.bg-gradient-to-r.from-blue-600.to-purple-600.text-white.py-16.px-4
+  .max-w-7xl.mx-auto.text-center
+    h1.text-4xl.md:text-5xl.font-bold.mb-4 Explore Our Courses
+    p.text-xl.text-blue-100.max-w-2xl.mx-auto Discover a wide range of courses designed to help you learn and grow your skills.
 
-<h1>Courses</h1>
-
-<div id="courses">
-  <% @courses.each do |course| %>
-    <%= render course %>
-    <p>
-      <%= link_to "Show this course", course %>
-    </p>
-  <% end %>
-</div>
-
-<%= link_to "New course", new_course_path %>
+/ Courses Grid Section
+.max-w-7xl.mx-auto.px-4.py-12
+  - if @courses.any?
+    .grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-3.gap-8
+      - @courses.each do |course|
+        = link_to course_path(course), class: "group block"
+          .bg-white.rounded-lg.shadow-md.overflow-hidden.transition-all.duration-300.hover:shadow-xl.hover:scale-105
+            / Course Cover Image
+            .relative.h-48.bg-gray-200.overflow-hidden
+              - if course.cover.attached?
+                = image_tag course.cover.url, alt: course.title, class: "w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+              - else
+                .w-full.h-full.bg-gradient-to-br.from-gray-300.to-gray-400.flex.items-center.justify-center
+                  svg.w-16.h-16.text-gray-500 fill="currentColor" viewBox="0 0 20 20"
+                    path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"
+            
+            / Course Content
+            .p-6
+              h3.text-xl.font-bold.text-gray-900.mb-2.line-clamp-2 = course.title
+              - if course.subtitle.present?
+                p.text-sm.text-blue-600.font-medium.mb-3 = course.subtitle
+              - if course.description.present?
+                p.text-gray-600.line-clamp-3.leading-relaxed = truncate(course.description, length: 120)
+              
+              / Course Meta
+              .mt-4.flex.items-center.justify-between.text-sm.text-gray-500
+                .flex.items-center
+                  svg.w-4.h-4.mr-1 fill="currentColor" viewBox="0 0 20 20"
+                    path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  span Course
+                .text-blue-600.font-medium.group-hover:text-blue-800.transition-colors
+                  | Learn More →
+  - else
+    / Empty State
+    .text-center.py-16
+      .mx-auto.h-24.w-24.text-gray-400.mb-4
+        svg fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+      h3.text-lg.font-medium.text-gray-900.mb-2 No Courses Available
+      p.text-gray-500.max-w-sm.mx-auto No courses have been published yet. Check back later for new learning opportunities!
