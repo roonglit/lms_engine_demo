@@ -68,7 +68,7 @@ module Lms
             sections_attributes: [[
               :id, :name, :_destroy,
               curriculum_items_attributes: [[
-                :id, :name, :_destroy
+                :id, :name, :_destroy, :video
               ]]
             ]]
           ])

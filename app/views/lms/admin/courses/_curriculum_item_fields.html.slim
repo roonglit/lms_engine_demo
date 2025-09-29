@@ -7,9 +7,13 @@
           = form.check_box :_destroy, value: 1, data: { "lms--curriculum-item-target": "checkbox" }, class: 'hidden'
         .inline-flex.gap-2
           .btn data-action="click->lms--curriculum-item#toggleVideoArea" 
-            span.iconify.lucide--chevron-down
+            span.iconify.lucide--chevron-down data-lms--curriculum-item-target="toggleIcon"
           = link_to "#", data: { action: "click->lms--curriculum-item#removeCurriculumItem" } do
             span.iconify.lucide--x-circle.text-error.size-4
       .mt-2.text-xs data-lms--curriculum-item-target="videoArea"
-        div
-          = form.file_field :cover, class: "filepond", direct_upload: true, accept: 'image/*', data: { "lms--filepond-target": "input"}
+        - if form.object.video.attached?
+          video(controls class="w-full max-h-60 bg-black") 
+            source src="#{url_for(form.object.video.url)}" type="video/mp4"
+            | Your browser does not support the video tag.
+        .mt-5
+          = form.file_field :video, class: "filepond", direct_upload: true, accept: 'video/*', data: { "lms--filepond-target": "input"}
