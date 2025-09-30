@@ -9,6 +9,9 @@
           path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"
       h1.text-lg.font-semibold.truncate = @course.title
     .flex.items-center.space-x-3
+      button#sidebar-toggle.text-gray-300.hover:text-white.transition-colors title="Toggle Sidebar"
+        svg.w-5.h-5 fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"
       button.text-gray-300.hover:text-white.transition-colors
         svg.w-5.h-5 fill="none" stroke="currentColor" viewBox="0 0 24 24"
           path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"
@@ -39,7 +42,7 @@
             | Your browser does not support the video tag.
 
     / Curriculum Sidebar
-    aside.w-96.bg-white.border-l.border-gray-200.flex.flex-col.overflow-hidden
+    aside#curriculum-sidebar.w-96.bg-white.border-l.border-gray-200.flex.flex-col.overflow-hidden.transition-all.duration-300
       / Sidebar Header
       .p-4.border-b.border-gray-200
         h3.font-semibold.text-lg.text-gray-900 Course Content
@@ -112,7 +115,31 @@ javascript:
     const videoContainer = document.getElementById('video-container');
     const mainVideo = document.getElementById('main-video');
     const videoSource = document.getElementById('video-source');
+    
+    // Sidebar toggle functionality
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const sidebar = document.getElementById('curriculum-sidebar');
+    let sidebarVisible = true;
 
+    sidebarToggle.addEventListener('click', function() {
+      sidebarVisible = !sidebarVisible;
+      
+      if (sidebarVisible) {
+        sidebar.classList.remove('hidden', 'w-0');
+        sidebar.classList.add('w-96');
+      } else {
+        sidebar.classList.remove('w-96');
+        sidebar.classList.add('w-0', 'overflow-hidden');
+        // Use setTimeout to hide completely after transition
+        setTimeout(() => {
+          if (!sidebarVisible) {
+            sidebar.classList.add('hidden');
+          }
+        }, 300);
+      }
+    });
+
+    // Curriculum item click functionality
     curriculumItems.forEach(item => {
       item.addEventListener('click', function() {
         const videoUrl = this.dataset.videoUrl;
