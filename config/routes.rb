@@ -5,7 +5,7 @@ Lms::Engine.routes.draw do
 		end
 	end
 
-  resources :courses
+  resources :courses, only: %i[index show]
 
 	root to: "courses#index"
 end
