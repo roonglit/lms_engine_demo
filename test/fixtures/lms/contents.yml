@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  subtitle: MyString
+  description: MyString
+  contentable: one
+  contentable_type: Contentable
+
+two:
+  title: MyString
+  subtitle: MyString
+  description: MyString
+  contentable: two
+  contentable_type: Contentable

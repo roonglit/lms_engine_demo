@@ -1,0 +1,7 @@
+class ChangeLmsCoursesToPolymorphic < ActiveRecord::Migration[8.1]
+  def change
+    remove_column :lms_courses, :title, :string
+    remove_column :lms_courses, :subtitle, :string
+    remove_column :lms_courses, :description, :text
+  end
+end

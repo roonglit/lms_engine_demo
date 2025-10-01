@@ -14,7 +14,7 @@ module Lms
 
       # GET /admin/courses/new
       def new
-        @course = Course.new
+        @course = Course.new(content: Content.new)
       end
 
       # GET /admin/courses/1/edit
@@ -64,7 +64,8 @@ module Lms
         # Only allow a list of trusted parameters through.
         def course_params
           params.expect(course: [ 
-            :title, :subtitle, :description, :content, :cover, 
+            :text_content, :cover,
+            content_attributes: [:id, :title, :subtitle, :description, :_destroy],
             sections_attributes: [[
               :id, :name, :_destroy,
               curriculum_items_attributes: [[

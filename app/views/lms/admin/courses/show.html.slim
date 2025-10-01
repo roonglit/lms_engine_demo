@@ -38,14 +38,14 @@
           p.text-base-content/80.mb-4 = @course.description
 
 / Course Content
-- if @course.content.present?
+- if @course.text_content.present?
   .card.card-border.bg-base-100.shadow.mt-6
     .card-body
       .card-title
         span.iconify.lucide--file-text.size-5.mr-2
         | Course Content
       .prose.max-w-none.mt-4
-        = @course.content
+        = @course.text_content
 
 / Course Curriculum
 - if @course.sections.any?
