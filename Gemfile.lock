@@ -2,9 +2,12 @@ PATH
   remote: .
   specs:
     lms (0.1.0)
+      importmap-rails
       rails (>= 8.1.0.beta1)
       simple_form
       slim-rails
+      stimulus-rails
+      turbo-rails
 
 GEM
   remote: https://rubygems.org/
