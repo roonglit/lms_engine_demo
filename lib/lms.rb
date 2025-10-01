@@ -2,6 +2,8 @@ require "lms/version"
 require "lms/engine"
 
 require "importmap-rails"
+require "turbo-rails"
+require "stimulus-rails"
 
 module Lms
   class << self
