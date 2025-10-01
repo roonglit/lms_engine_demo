@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   mount Lms::Engine => "/lms"
 
   namespace :admin do

@@ -1,5 +1,7 @@
 module Lms
   module ApplicationHelper
+    include UserHelper
+    
     def lms_importmap_tags(entry_point = "lms/application")
       importmap = Lms.configuration.importmap
 
