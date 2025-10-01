@@ -4,6 +4,7 @@ require "lms/engine"
 require "importmap-rails"
 require "turbo-rails"
 require "stimulus-rails"
+require "rails_icons"
 
 module Lms
   class << self
