@@ -1,5 +1,7 @@
-# Pin the controllers index
-# pin "lms/controllers", to: "lms/controllers/index.js"
+pin "@hotwired/stimulus", to: "stimulus.min.js", preload: true
+pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
 
-# pin "controllers/lms", to: Lms::Engine.root.join("app/javascript/controllers/lms/index.js")
-pin_all_from Lms::Engine.root.join("app/javascript/controllers/lms"), under: "controllers/lms"
+pin "lms/application", preload: true
+
+# Pin all controller files following the *_controller.js naming convention
+pin_all_from Lms::Engine.root.join("app/javascript/lms/controllers"), under: "controllers", to: "lms/controllers"

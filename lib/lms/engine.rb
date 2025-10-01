@@ -21,7 +21,7 @@ module Lms
 
     # Make sure engine's importmap is loaded after main app's importmap
     initializer "lms.importmap", before: "importmap" do |app|
-      app.config.importmap.paths << root.join("config/importmap.rb")
+      app.config.importmap.paths << root.join("config/admin_importmap.rb")
       app.config.importmap.cache_sweepers << root.join("app/javascript")
     end
   end
