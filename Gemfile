@@ -20,3 +20,4 @@ gem "turbo-rails"
 gem "stimulus-rails"
 gem "aws-sdk-s3", require: false
 gem "devise"
+gem "wicked"

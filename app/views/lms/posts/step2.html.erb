@@ -1,0 +1,24 @@
+<div class="flex-1 flex flex-col justify-between items-center px-8 pb-12">
+  <div class="w-full max-w-md text-start mb-6">
+    <div class="flex flex-row space-x-1.5 mt-10">
+        <div class="w-1.5 h-1.5 rounded-full bg-gray-300 mb-4"></div>
+        <div class="w-1.5 h-1.5 rounded-full bg-gray-500 mb-4"></div>
+    </div>
+    <h1 class="text-lg font-bold mb-4">
+      ขั้นตอนง่ายๆ ก่อนกด Create Post
+    </h1>
+    <ul class="list-decimal text-left px-5 space-y-2 text-sm">
+        <li>เลือกประเภทของคอนเทนต์</li>
+        <li>สร้างคอนเทนต์ของคุณ 🚀</li>
+        <li>ลือก Competency ที่ตรงที่สุด (1–2 ด้าน)</li>
+    </ul>
+  </div>
+
+  <div class="w-50 h-50 rounded-full bg-gray-300 mb-8"></div>
+
+  <div class="w-full max-w-md">
+    <p class="mb-14 text-sm font-bold">Tip: ถ้าไม่มั่นใจว่าคอนเทนต์คุณเข้ากับด้านไหน ให้ถามตัวเองว่า “ผู้เรียนจะได้สกิลอะไรกลับไป?”</p>
+    <%= link_to "เริ่มสร้างคอนเทนต์กันเลย", lms.new_post_path,
+      class: "block w-full text-center text-md py-3 rounded-sm bg-gray-700 text-white font-semibold" %>
+  </div>
+</div>

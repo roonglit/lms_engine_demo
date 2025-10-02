@@ -13,7 +13,7 @@ html
 
     = stylesheet_link_tag "lms/application", media: "all"
     = lms_importmap_tags
-  body
+  body.h-screen.flex.flex-col
     section.flex.flex-auto.flex-col.size-full
       .flex.shrink-0.grow.flex-col
         = yield
