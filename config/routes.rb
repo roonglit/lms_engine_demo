@@ -1,4 +1,5 @@
 Lms::Engine.routes.draw do
+  resources :events
   resources :videos
 	constraints(->(req) { req.path.include?('admin')}) do
 		scope module: 'admin', as: :admin do

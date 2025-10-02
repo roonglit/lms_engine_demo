@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_10_02_072842) do
+ActiveRecord::Schema[8.1].define(version: 2025_10_02_075754) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
@@ -78,6 +78,12 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_02_072842) do
     t.integer "section_id", null: false
     t.datetime "updated_at", null: false
     t.index ["section_id"], name: "index_lms_curriculum_items_on_section_id"
+  end
+
+  create_table "lms_events", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.date "event_date"
+    t.datetime "updated_at", null: false
   end
 
   create_table "lms_sections", force: :cascade do |t|
