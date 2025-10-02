@@ -1,13 +1,22 @@
-.flex
-  .flex-grow 
-    p = content.user.email
-  span = "สร้างเมื่อ #{content.updated_at.strftime("%d %B %Y")}"
-.flex.mb-7.pb-5.border-b.group class="border-[#eeeeee]"
-  div.flex-grow
-    h3 = link_to content.title, content.contentable
-    p = raw content.description
-  div
-    - if content.cover.attached?
-      = image_tag content.cover.url, class: "w-100"
-    - else
-      p place holder
+.flex.flex-col
+  .w-full.flex.justify-between
+    .div.flex.gap-2
+      p class="text-[#003aae] transition-all hover:text-[#3756f7]" = content.user.email
+      div class="p-[4px_25px] bg-[#3756f7] uppercase text-white text-[10px] md:text-[14px] rounded-[5px]" = "wolf king"
+    span class="text-base text-[#3756f7] hidden md:inline" = "สร้างเมื่อ #{content.updated_at.strftime("%d %B %Y")}"
+  .flex.mb-7.pb-5.border-b.group.w-full.justify-between.mt-2.gap-4 class="border-[#eeeeee]"
+    div.w-2/3
+      h3 = link_to content.title, content.contentable, class: "text-xl font-heading-font mb-8 font-bold mt-3 xl:text-lg xl:mb-2 text-[#444] transition-all hover:text-[#3756f7]"
+      div class="text-[#444444] text-base line-clamp-3" = raw(content.description)
+      div.flex.gap-2
+        div.flex.gap-2
+          p = "❤️"
+          p = 14
+        div.flex.gap-2
+          p = "💬"
+          p = 2
+    div.overflow-hidden.w-1/3
+        - if content.cover.attached?
+          = image_tag content.cover.url, class: "w-96 aspect-[16/9] object-cover grayscale-0 scale-[1] rounded-[6px] transition-all group-hover:grayscale-[100%] group-hover:scale-[1.2]"
+        - else
+          p place holder
