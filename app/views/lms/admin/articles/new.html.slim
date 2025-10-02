@@ -1,0 +1,15 @@
+- content_for :title, "New course"
+
+.flex.items-center.justify-between
+  h3.text-lg.font-medium New Course 
+  .breadcrumbs.hidden.p-0.text-sm.sm:inline
+    ul
+      li LMS
+      li
+        = link_to "Courses", lms.admin_courses_path
+      li.opacity-80 New
+
+
+= render "form", course: @course do |form|
+  = link_to "Cancel", lms.admin_courses_path, class: "btn btn-ghost"
+  = form.submit "Create Course", class: "btn btn-primary"
