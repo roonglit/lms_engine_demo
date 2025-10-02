@@ -1,0 +1,13 @@
+.flex
+  .flex-grow 
+    p = content.user.email
+  span = "สร้างเมื่อ #{content.updated_at.strftime("%d %B %Y")}"
+.flex.mb-7.pb-5.border-b.group class="border-[#eeeeee]"
+  div.flex-grow
+    h3 = link_to content.title, content.contentable
+    p = raw content.description
+  div
+    - if content.cover.attached?
+      = image_tag content.cover.url, class: "w-100"
+    - else
+      p place holder

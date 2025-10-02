@@ -26,8 +26,9 @@
             .mt-5 
               = image_tag course.cover.url
           .mt-5
-            div data-controller="lms--filepond"
-              = form.file_field :cover, class: "filepond", direct_upload: true, accept: 'image/*', data: { "lms--filepond-target": "input"}
+            = form.simple_fields_for :content do |content_fields|
+              div data-controller="lms--filepond"
+                = content_fields.file_field :cover, class: "filepond", direct_upload: true, accept: 'image/*', data: { "lms--filepond-target": "input"}
   .mt-6
     .grid.grid-cols-1.gap-6
       .card.bg-base-100.shadow 

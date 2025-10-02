@@ -1,3 +1,4 @@
 web: bin/rails server
 lms_css: bin/rails app:lms:tailwindcss:watch
+lms_admin_css: bin/rails app:lms:admin:tailwindcss:watch
 dummy_admin_css: bin/rails app:lms:dummy:admin:tailwindcss:watch

@@ -1,4 +1,4 @@
-class ChangeLmsCoursesToPolymorphic < ActiveRecord::Migration[8.1]
+class RemoveLmsContentFromLmsCourses < ActiveRecord::Migration[8.1]
   def change
     remove_column :lms_courses, :title, :string
     remove_column :lms_courses, :subtitle, :string

@@ -1,1 +1,4 @@
-@import url("/lms/admin/tailwind.css");
+@import url("/lms/tailwind.css");
+@import url("/lms/application/actiontext.css");
+@import url("/lms/application/filepond.css");
+@import url("/lms/application/filepond-plugin-image-preview.css");

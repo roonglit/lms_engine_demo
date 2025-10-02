@@ -1,0 +1,14 @@
+header.sticky.top-0.z-10.flex.justify-between.gap-4.border-b.border-zinc-300/25.bg-white/75.p-6.backdrop-blur-md
+  .flex.items-center.gap-4
+    = link_to lms.root_path do
+      button.flex.h-4.w-4.items-center.justify-center type='button' aria-label='Toggle Aside Menu'
+        = icon "arrow-left", class: "text-xl"
+    
+
+.container.mx-auto.p-4
+  .scroll-mt-offset.col-span-12 
+    .text-3xl.font-semibold Create Post
+  .mx-auto.text-center เลือกประเภทของ Content
+  .mx-auto.text-center
+    = link_to lms.new_article_path, class: "inline-flex items-center justify-center bg-transparent border-2 border-zinc-500/50 text-black dark:text-white hover:border-zinc-500 active:border-zinc-500 px-5 py-1.5 text-base rounded-lg transition-all duration-300 ease-in-out" do
+      div Article

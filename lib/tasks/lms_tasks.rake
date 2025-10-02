@@ -30,6 +30,36 @@ namespace :lms do
     end
   end
 
+  namespace :admin do
+    namespace :tailwindcss do
+      desc "Watch and build LMS Tailwind CSS on file changes"
+      task :watch do
+        input_file, output_file = setup_lms_tailwind_files
+        
+        puts "Watching LMS Tailwind CSS: #{input_file} -> #{output_file}"
+        puts "Press Ctrl+C to stop watching..."
+        
+        exec_lms_tailwind_command(input_file, output_file, "--watch")
+      rescue Interrupt
+        puts "\nStopping LMS Tailwind CSS watcher..."
+      end
+      
+      desc "Build LMS Tailwind CSS"
+      task :build do
+        input_file, output_file = setup_lms_tailwind_files
+        
+        puts "Building: #{input_file} -> #{output_file}"
+        
+        if exec_lms_tailwind_command(input_file, output_file)
+          puts "LMS Tailwind CSS built successfully!"
+        else
+          puts "Error building LMS Tailwind CSS"
+          exit 1
+        end
+      end
+    end
+  end
+
   namespace :dummy do
     namespace :admin do
       namespace :tailwindcss do
@@ -67,6 +97,28 @@ end
 
 # Helper methods
 def setup_lms_tailwind_files
+  engine_root = File.expand_path("../..", __dir__)
+  input_file = File.join(engine_root, "app/assets/tailwind/lms/application.css")
+  output_file = File.join(engine_root, "app/assets/builds/lms/tailwind.css")
+  
+  # Ensure directories exist
+  FileUtils.mkdir_p(File.dirname(input_file))
+  FileUtils.mkdir_p(File.dirname(output_file))
+  
+  # Create input file if it doesn't exist
+  unless File.exist?(input_file)
+    File.write(input_file, <<~CSS)
+      @import "tailwindcss";
+      
+      /* LMS Engine-specific styles */
+    CSS
+    puts "Created #{input_file}"
+  end
+  
+  [input_file, output_file]
+end
+
+def setup_lms_admin_tailwind_files
   engine_root = File.expand_path("../..", __dir__)
   input_file = File.join(engine_root, "app/assets/tailwind/lms/admin.css")
   output_file = File.join(engine_root, "app/assets/builds/lms/admin/tailwind.css")

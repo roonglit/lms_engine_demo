@@ -1,0 +1,11 @@
+
+
+= simple_form_for article do |form|
+  = form.simple_fields_for :content do |content_form|
+    div data-controller="filepond"
+      h2 Cover Image
+      = content_form.file_field :cover, class: "filepond", direct_upload: true, accept: 'image/*', data: { "filepond-target": "input"}
+    = content_form.input :title
+    = content_form.input :description, as: :rich_textarea
+
+  = form.submit "Save", class: "btn btn-blue w-full btn-primary btn-wide mt-4 max-w-full gap-3 md:mt-6"

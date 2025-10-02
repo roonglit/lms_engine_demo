@@ -1,6 +1,6 @@
 @import "tailwindcss" source(none);
 
-@source "./../../../views/**/*";
+@source "./../../../views/lms/admin/**/*";
 
 @import "./admin/daisyui.css";
 @import "./admin/iconify.css";

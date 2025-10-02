@@ -22,10 +22,7 @@ module Lms
       end
 
       # POST /admin/courses
-      def create
-        Rails.logger.debug "Raw params: #{params.inspect}"
-        Rails.logger.debug "Course params: #{course_params.inspect}"
-        
+      def create 
         @course = Course.new(course_params)
 
         if @course.save
@@ -65,7 +62,7 @@ module Lms
         def course_params
           params.expect(course: [ 
             :text_content, :cover,
-            content_attributes: [:id, :title, :subtitle, :description, :_destroy],
+            content_attributes: [:id, :title, :subtitle, :description, :cover, :_destroy],
             sections_attributes: [[
               :id, :name, :_destroy,
               curriculum_items_attributes: [[
