@@ -38,6 +38,8 @@ module Lms
         params_with_user = params.expect(article: [ 
           content_attributes: [:id, :title, :subtitle, :description, :cover, :user_id, :_destroy],
         ])
+        p "<<<<<<<< DBBUG"
+        p params_with_user
         params_with_user[:content_attributes][:user_id] = current_user.id
         params_with_user
       end
