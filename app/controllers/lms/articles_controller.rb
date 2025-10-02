@@ -13,9 +13,7 @@ module Lms
     end
 
     def create
-      params_with_user = article_params
-      params_with_user[:content_attributes][:user_id] = current_user.id
-      @article = Article.new(params_with_user)
+      @article = Article.new(article_params)
 
       if @article.save
         redirect_to lms.root_path, notice: "Article was successfully created."
@@ -36,10 +34,12 @@ module Lms
       end
 
       # Only allow a list of trusted parameters through.
-        def article_params
-          params.expect(article: [ 
-            content_attributes: [:id, :title, :subtitle, :description, :cover, :user_id, :_destroy],
-          ])
-        end
+      def article_params
+        params_with_users = params.expect(article: [ 
+          content_attributes: [:id, :title, :subtitle, :description, :cover, :user_id, :_destroy],
+        ])
+        params_with_user[:content_attributes][:user_id] = current_user.id
+        params_with_user
+      end
   end
 end

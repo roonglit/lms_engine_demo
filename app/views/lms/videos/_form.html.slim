@@ -1,0 +1,21 @@
+
+
+= simple_form_for video do |form|
+  = form.simple_fields_for :content do |content_form|
+    div data-controller="filepond"
+      h2 Cover Image
+      - if video.content.cover.attached?
+        .mt-5 
+          = image_tag video.content.cover.url
+      = content_form.file_field :cover, class: "filepond", direct_upload: true, accept: 'image/*', data: { "filepond-target": "input"}
+    = content_form.input :title
+    = content_form.input :description, as: :rich_textarea
+  
+  .mt-4 data-controller="filepond"
+    h2 Video File
+    - if video.video.attached?
+      .mt-5 
+        = video_tag video.video.url, controls: true, class: "w-full max-h-96"
+    = form.file_field :video, class: "filepond", direct_upload: true, accept: 'video/*', data: { "filepond-target": "input"}
+
+  = form.submit "Save", class: "btn btn-blue w-full btn-primary btn-wide mt-4 max-w-full gap-3 md:mt-6"

@@ -60,9 +60,9 @@ module Lms
 
         # Only allow a list of trusted parameters through.
         def course_params
-          params.expect(course: [ 
+          params_with_user = params.expect(course: [ 
             :text_content, :cover,
-            content_attributes: [:id, :title, :subtitle, :description, :cover, :_destroy],
+            content_attributes: [:id, :title, :subtitle, :description, :cover, :user_id, :_destroy],
             sections_attributes: [[
               :id, :name, :_destroy,
               curriculum_items_attributes: [[
@@ -70,6 +70,8 @@ module Lms
               ]]
             ]]
           ])
+          params_with_user[:content_attributes][:user_id] = current_user.id
+          params_with_user
         end
     end
   end
