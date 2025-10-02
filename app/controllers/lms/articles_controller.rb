@@ -35,7 +35,7 @@ module Lms
 
       # Only allow a list of trusted parameters through.
       def article_params
-        params_with_users = params.expect(article: [ 
+        params_with_user = params.expect(article: [ 
           content_attributes: [:id, :title, :subtitle, :description, :cover, :user_id, :_destroy],
         ])
         params_with_user[:content_attributes][:user_id] = current_user.id
