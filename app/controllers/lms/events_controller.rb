@@ -25,7 +25,7 @@ module Lms
       @event = Event.new(event_params)
 
       if @event.save
-        redirect_to @event, notice: "Event was successfully created."
+        redirect_to lms.root_path, notice: "Event was successfully created."
       else
         render :new, status: :unprocessable_content
       end

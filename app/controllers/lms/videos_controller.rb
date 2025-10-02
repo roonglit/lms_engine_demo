@@ -25,7 +25,7 @@ module Lms
       @video = Video.new(video_params)
 
       if @video.save
-        redirect_to @video, notice: "Video was successfully created."
+        redirect_to lms.root_path, notice: "Video was successfully created."
       else
         render :new, status: :unprocessable_content
       end
