@@ -3,7 +3,7 @@
   .flex.flex-col.bg-white.dark:bg-zinc-900.rounded-lg
     / card body
     .grow.px-4.pb-4 class="[&:first-child]:pt-4"
-      = link_to "วันนี้คุณมีเรื่องอะไรอยากจะแชร์ไหม", lms.new_post_path
+      = link_to "วันนี้คุณมีเรื่องอะไรอยากจะแชร์ไหม", lms.post_path(:step1)
 
 .container.mx-auto.p-4
   = render partial: "content", collection: @contents
