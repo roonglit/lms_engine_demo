@@ -11,5 +11,6 @@
 
 
 = render "form", course: @course do |form|
+
   = link_to "Cancel", lms.admin_courses_path, class: "btn btn-ghost"
   = form.submit "Create Course", class: "btn btn-primary"

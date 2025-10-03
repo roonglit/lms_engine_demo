@@ -5,6 +5,7 @@ Lms::Engine.routes.draw do
 			resources :videos
 			resources :events
 			resources :courses
+			resources :categories
 		end
 	end
 
@@ -12,6 +13,7 @@ Lms::Engine.routes.draw do
 	resources :articles
 	resources :events
   resources :videos
+	resources :categories
   resources :courses, only: %i[index show]
 
 	root to: "home#index"
