@@ -16,6 +16,7 @@
           p = "💬"
           p = 2
     div.overflow-hidden.w-1/3
+      = link_to content.contentable do
         - if content.cover.attached?
           = image_tag content.cover.url, class: "w-96 aspect-[16/9] object-cover grayscale-0 scale-[1] rounded-[6px] transition-all group-hover:grayscale-[100%] group-hover:scale-[1.2]"
         - else

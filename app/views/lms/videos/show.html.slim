@@ -1,0 +1,7 @@
+.container.mx-auto-p4
+  div
+    div class="mb-[70px]"
+      - if @video.cover.attached?
+        = image_tag @video.cover.url, class: "w-full aspect-[16/9] object-cover rounded-[6px]"
+    div
+      h1 = @video.title

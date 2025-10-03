@@ -7,6 +7,8 @@
 @source "./../../../views/lms/courses/**/*";
 @source "./../../../views/lms/home/**/*";
 @source "./../../../views/lms/posts/**/*";
+@source "./../../../views/lms/videos/**/*";
+@source "./../../../views/lms/events/**/*";
 
 @layer base {
   :root {
