@@ -11,6 +11,9 @@ html
 
     = yield :head
 
+    / Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!)
+    = tag.link rel: "manifest", href: main_app.pwa_manifest_path(format: :json)
+
     = stylesheet_link_tag "lms/application", media: "all"
     = lms_importmap_tags
   body
