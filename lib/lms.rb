@@ -5,6 +5,7 @@ require "importmap-rails"
 require "turbo-rails"
 require "stimulus-rails"
 require "rails_icons"
+require "wicked"
 
 module Lms
   class << self

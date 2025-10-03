@@ -16,7 +16,7 @@ module Lms
       @article = Article.new(article_params)
 
       if @article.save
-        redirect_to lms.root_path, notice: "Article was successfully created."
+        redirect_to @article, notice: "Article was successfully created."
       else
         render :new, status: :unprocessable_content
       end
