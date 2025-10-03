@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "turbo-rails"
   spec.add_dependency "stimulus-rails"
   spec.add_dependency "rails_icons"
+  spec.add_dependency "wicked"
 
   spec.add_development_dependency "tailwindcss-rails"
 end
