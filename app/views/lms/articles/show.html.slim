@@ -13,6 +13,8 @@
           p.text-sm = @article.content.user.email
           div class="px-2 py-1 bg-[#3756f7] uppercase text-white text-[10px] rounded-[5px]" = "wolf king"
         p.text-sm = @article.created_at.strftime("%d/%m/%Y")
+    - @article.content.categories.order(:name).each do |category|
+      div class="inline-block mr-2 mb-2 px-2 py-1 bg-gray-500 text-white text-[10px] rounded-[5px]" = category.name
     p.text-sm = raw(@article.description)
   / .w-full.max-w-md.mt-30
   /   = link_to "ต่อไป", "#", class: "block w-full text-center text-md py-3 rounded-sm bg-gray-700 text-white font-semibold"
