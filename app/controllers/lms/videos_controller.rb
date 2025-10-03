@@ -14,6 +14,7 @@ module Lms
     # GET /videos/new
     def new
       @video = Video.new(content: Content.new)
+      @categories = Category.all
     end
 
     # GET /videos/1/edit
@@ -56,7 +57,7 @@ module Lms
       def video_params
         params_with_user = params.expect(video: [
           :video,
-          content_attributes: [:id, :title, :subtitle, :description, :cover, :user_id, :_destroy],
+          content_attributes: [:id, :title, :subtitle, :description, :cover, :user_id, :_destroy, category_ids: []],
         ])
         params_with_user[:content_attributes][:user_id] = current_user.id
         params_with_user

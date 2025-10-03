@@ -17,5 +17,15 @@
       .mt-5 
         = video_tag video.video.url, controls: true, class: "w-full max-h-96"
     = form.file_field :video, class: "filepond", direct_upload: true, accept: 'video/*', data: { "filepond-target": "input"}
+  
+  p.mt-2 = "Tag Category"
+  = form.simple_fields_for :content do |content_fields|
+    .flex.flex-wrap.gap-2
+      - @categories.order(:name).each do |category|
+        - checkbox_id = "#{category.id}"
+        div.flex.items-center.mb-2
+          = content_fields.check_box :category_ids, { multiple: true, id: checkbox_id, class: "hidden peer" }, category.id, nil
+          label.cursor-pointer.select-none.px-5.rounded-md.border.border-gray-300.peer-checked:bg-blue-200.peer-checked:border-gray-500 for=checkbox_id
+            = category.name
 
   = form.submit "Save", class: "btn btn-blue w-full btn-primary btn-wide mt-4 max-w-full gap-3 md:mt-6"
