@@ -7,6 +7,7 @@ module Lms
 
     def new
       @article = Article.new(content: Content.new)
+      @categories = Category.all
     end
 
     def edit
@@ -16,7 +17,7 @@ module Lms
       @article = Article.new(article_params)
 
       if @article.save
-        redirect_to @article, notice: "Article was successfully created."
+        redirect_to root_path, notice: "Article was successfully created."
       else
         render :new, status: :unprocessable_content
       end
@@ -36,10 +37,8 @@ module Lms
       # Only allow a list of trusted parameters through.
       def article_params
         params_with_user = params.expect(article: [ 
-          content_attributes: [:id, :title, :subtitle, :description, :cover, :user_id, :_destroy],
+          content_attributes: [:id, :title, :subtitle, :description, :cover, :user_id, :_destroy, category_ids: []],
         ])
-        p "<<<<<<<< DBBUG"
-        p params_with_user
         params_with_user[:content_attributes][:user_id] = current_user.id
         params_with_user
       end
