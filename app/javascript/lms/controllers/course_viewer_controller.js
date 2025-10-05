@@ -4,12 +4,14 @@ export default class extends Controller {
   static targets = ["sidebar", "item"]
 
   connect() {
+    console.log("Course viewer controller connected")
     this.sidebarVisible = true
     // Highlight active item on page load if needed
     this.highlightActiveItem()
   }
 
   toggleSidebar() {
+    console.log("Toggle sidebar called", this.sidebarVisible)
     this.sidebarVisible = !this.sidebarVisible
 
     if (this.sidebarVisible) {

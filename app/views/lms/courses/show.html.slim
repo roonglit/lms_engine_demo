@@ -1,6 +1,6 @@
 - content_for :title, @course.title
 
-.h-screen.flex.flex-col.bg-gray-900 data-controller="lms--course-viewer"
+.h-screen.flex.flex-col.bg-gray-900 data-controller="course-viewer"
   / Top Navigation
   header.bg-gray-800.text-white.px-6.py-3.flex.items-center.justify-between.border-b.border-gray-700
     .flex.items-center.space-x-4
@@ -9,7 +9,7 @@
           path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"
       h1.text-lg.font-semibold.truncate = @course.title
     .flex.items-center.space-x-3
-      button.text-gray-300.hover:text-white.transition-colors data-action="click->lms--course-viewer#toggleSidebar" title="Toggle Sidebar"
+      button.text-gray-300.hover:text-white.transition-colors data-action="click->course-viewer#toggleSidebar" title="Toggle Sidebar"
         svg.w-5.h-5 fill="none" stroke="currentColor" viewBox="0 0 24 24"
           path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"
       button.text-gray-300.hover:text-white.transition-colors
@@ -36,7 +36,7 @@
               p.text-gray-400.text-sm.max-w-lg = @course.description
 
     / Curriculum Sidebar
-    aside.w-96.bg-white.border-l.border-gray-200.flex.flex-col.overflow-hidden.transition-all.duration-300 data-lms--course-viewer-target="sidebar"
+    aside.w-96.bg-white.border-l.border-gray-200.flex.flex-col.overflow-hidden.transition-all.duration-300 data-course-viewer-target="sidebar"
       / Sidebar Header
       .p-4.border-b.border-gray-200
         h3.font-semibold.text-lg.text-gray-900 Course Content
@@ -61,7 +61,7 @@
 
             / Curriculum Items
             - section.curriculum_items.each_with_index do |item, item_index|
-              = link_to course_curriculum_item_path(@course, item), data: { turbo_frame: "main-content", curriculum_item_id: item.id, lms__course_viewer_target: "item", action: "click->lms--course-viewer#selectItem" }, class: "curriculum-item border-b border-gray-50 hover:bg-blue-50 cursor-pointer transition-colors block"
+              = link_to course_curriculum_item_path(@course, item), data: { turbo_frame: "main-content", curriculum_item_id: item.id, course_viewer_target: "item", action: "click->course-viewer#selectItem" }, class: "curriculum-item border-b border-gray-50 hover:bg-blue-50 cursor-pointer transition-colors block"
                 .p-4.flex.items-center
                   / Play Icon
                   .mr-3.flex-shrink-0
