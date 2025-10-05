@@ -1,6 +1,6 @@
 - content_for :title, @course.title
 
-.h-screen.flex.flex-col.bg-gray-900
+.h-screen.flex.flex-col.bg-gray-900 data-controller="lms--course-viewer"
   / Top Navigation
   header.bg-gray-800.text-white.px-6.py-3.flex.items-center.justify-between.border-b.border-gray-700
     .flex.items-center.space-x-4
@@ -9,7 +9,7 @@
           path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"
       h1.text-lg.font-semibold.truncate = @course.title
     .flex.items-center.space-x-3
-      button#sidebar-toggle.text-gray-300.hover:text-white.transition-colors title="Toggle Sidebar"
+      button.text-gray-300.hover:text-white.transition-colors data-action="click->lms--course-viewer#toggleSidebar" title="Toggle Sidebar"
         svg.w-5.h-5 fill="none" stroke="currentColor" viewBox="0 0 24 24"
           path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"
       button.text-gray-300.hover:text-white.transition-colors
@@ -23,9 +23,9 @@
   .flex-1.flex.overflow-hidden
     / Video/Content Area
     main.flex-1.bg-black.flex.items-center.justify-center.relative
-      #main-content.w-full.h-full
-        / Default state
-        #welcome-screen.flex.items-center.justify-center.h-full.text-white
+      = turbo_frame_tag "main-content", class: "w-full h-full" do
+        / Default welcome state
+        .flex.items-center.justify-center.h-full.text-white
           .text-center
             .mb-6
               svg.w-24.h-24.mx-auto.text-gray-400 fill="none" stroke="currentColor" viewBox="0 0 24 24"
@@ -35,14 +35,8 @@
             - if @course.description.present?
               p.text-gray-400.text-sm.max-w-lg = @course.description
 
-        / Video container (hidden by default)
-        #video-container.hidden.w-full.h-full
-          video#main-video.w-full.h-full controls=true
-            source#video-source src="" type="video/mp4"
-            | Your browser does not support the video tag.
-
     / Curriculum Sidebar
-    aside#curriculum-sidebar.w-96.bg-white.border-l.border-gray-200.flex.flex-col.overflow-hidden.transition-all.duration-300
+    aside.w-96.bg-white.border-l.border-gray-200.flex.flex-col.overflow-hidden.transition-all.duration-300 data-lms--course-viewer-target="sidebar"
       / Sidebar Header
       .p-4.border-b.border-gray-200
         h3.font-semibold.text-lg.text-gray-900 Course Content
@@ -67,7 +61,7 @@
 
             / Curriculum Items
             - section.curriculum_items.each_with_index do |item, item_index|
-              .curriculum-item.border-b.border-gray-50.hover:bg-blue-50.cursor-pointer.transition-colors data-video-url=(item.video.attached? ? url_for(item.video.url) : '') data-item-name=item.name
+              = link_to course_curriculum_item_path(@course, item), data: { turbo_frame: "main-content", curriculum_item_id: item.id, lms__course_viewer_target: "item", action: "click->lms--course-viewer#selectItem" }, class: "curriculum-item border-b border-gray-50 hover:bg-blue-50 cursor-pointer transition-colors block"
                 .p-4.flex.items-center
                   / Play Icon
                   .mr-3.flex-shrink-0
@@ -108,71 +102,3 @@
             h4.text-sm.font-medium.text-gray-900.mb-1 No content available
             p.text-xs.text-gray-500 This course doesn't have any curriculum yet.
 
-javascript:
-  document.addEventListener('DOMContentLoaded', function() {
-    const curriculumItems = document.querySelectorAll('.curriculum-item');
-    const welcomeScreen = document.getElementById('welcome-screen');
-    const videoContainer = document.getElementById('video-container');
-    const mainVideo = document.getElementById('main-video');
-    const videoSource = document.getElementById('video-source');
-    
-    // Sidebar toggle functionality
-    const sidebarToggle = document.getElementById('sidebar-toggle');
-    const sidebar = document.getElementById('curriculum-sidebar');
-    let sidebarVisible = true;
-
-    sidebarToggle.addEventListener('click', function() {
-      sidebarVisible = !sidebarVisible;
-      
-      if (sidebarVisible) {
-        sidebar.classList.remove('hidden', 'w-0');
-        sidebar.classList.add('w-96');
-      } else {
-        sidebar.classList.remove('w-96');
-        sidebar.classList.add('w-0', 'overflow-hidden');
-        // Use setTimeout to hide completely after transition
-        setTimeout(() => {
-          if (!sidebarVisible) {
-            sidebar.classList.add('hidden');
-          }
-        }, 300);
-      }
-    });
-
-    // Curriculum item click functionality
-    curriculumItems.forEach(item => {
-      item.addEventListener('click', function() {
-        const videoUrl = this.dataset.videoUrl;
-        const itemName = this.dataset.itemName;
-
-        // Remove active state from all items
-        curriculumItems.forEach(i => i.classList.remove('bg-blue-50', 'border-l-4', 'border-blue-500'));
-        
-        // Add active state to clicked item
-        this.classList.add('bg-blue-50', 'border-l-4', 'border-blue-500');
-
-        if (videoUrl) {
-          // Show video
-          welcomeScreen.classList.add('hidden');
-          videoContainer.classList.remove('hidden');
-          videoSource.src = videoUrl;
-          mainVideo.load(); // Reload the video element
-        } else {
-          // Show placeholder for non-video content
-          videoContainer.classList.add('hidden');
-          welcomeScreen.classList.remove('hidden');
-          welcomeScreen.innerHTML = `
-            <div class="text-center">
-              <div class="mb-6">
-                <svg class="w-16 h-16 mx-auto text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                </svg>
-              </div>
-              <h2 class="text-xl font-bold mb-4">${itemName}</h2>
-              <p class="text-gray-300">This lesson doesn't have video content yet.</p>
-            </div>
-          `;
-        }
-      });
-    });
-  });
