@@ -5,7 +5,7 @@ Gem::Specification.new do |spec|
   spec.version     = Lms::VERSION
   spec.authors     = [ "Roonglit Chareonsupkul" ]
   spec.email       = [ "roonglit@gmail.com" ]
-  spec.homepage    = "lms"
+  spec.homepage    = "https://onerev.getstart.co"
   spec.summary     = "Learning Management System"
   spec.description = "Learning Management System"
   spec.license     = "MIT"
