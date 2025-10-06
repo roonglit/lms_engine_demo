@@ -1,7 +1,23 @@
-.container.mx-auto-p4
-  div
-    div class="mb-[70px]"
-      - if @video.cover.attached?
-        = image_tag @video.cover.url, class: "w-full aspect-[16/9] object-cover rounded-[6px]"
-    div
-      h1 = @video.title
+- if @video.content.cover.attached?
+  = image_tag @video.content.cover.url, class: "h-60 aspect-[16/9] object-cover grayscale-0 scale-[1] rounded-[6px] transition-all group-hover:grayscale-[100%] group-hover:scale-[1.2]"
+- else
+  .w-screen.h-60.bg-gray-300
+.w-full.flex-1.flex.flex-col.items-center.justify-between.texts-center.mx-auto.px-8.pb-12
+  .w-full.max-w-md.text-start.mb-6.py-6
+    .text-xl.font-bold.mb-4
+      p = @video.title
+
+    .flex.items-center.mb-5
+      = icon "user-circle", class: "w-10 h-10 text-gray-500"
+      .ml-2.flex.flex-col
+        .div.flex.gap-2
+          p.text-sm = @video.content.user.email
+          div class="px-2 py-1 bg-[#3756f7] uppercase text-white text-[10px] rounded-[5px]" = "wolf king"
+        p.text-sm = @video.created_at.strftime("%d/%m/%Y")
+
+    = video_tag @video.video.url,
+        controls: true
+
+    - @video.content.categories.order(:name).each do |category|
+      div class="inline-block mr-2 mb-2 px-2 py-1 bg-gray-500 text-white text-[10px] rounded-[5px]" = category.name
+    p.text-sm = raw(@video.description)
