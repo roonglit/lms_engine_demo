@@ -15,10 +15,11 @@
           div class="px-2 py-1 bg-[#3756f7] uppercase text-white text-[10px] rounded-[5px]" = "wolf king"
         p.text-sm = @video.created_at.strftime("%d/%m/%Y")
 
-    #video-container
-      video.w-full.h-full controls=true
-        source src=main_app.rails_blob_path(@video.video, disposition: "inline") type="video/mp4"
-        | Your browser does not support the video tag.    
+    - if @video.video.attached?
+      #video-container
+        video.w-full.h-full controls=true
+          source src=main_app.rails_blob_path(@video.video, disposition: "inline") type="video/mp4"
+          | Your browser does not support the video tag.    
 
     - @video.content.categories.order(:name).each do |category|
       div class="inline-block mr-2 mb-2 px-2 py-1 bg-gray-500 text-white text-[10px] rounded-[5px]" = category.name
