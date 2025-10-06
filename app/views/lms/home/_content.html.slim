@@ -11,15 +11,18 @@
       h3 = link_to content.title, polymorphic_path(content.contentable), class: "text-xl font-heading-font mb-8 font-bold mt-3 xl:text-lg xl:mb-2 text-[#444] transition-all hover:text-[#3756f7]"
       div.flex.gap-2
         div.inline-flex.items-center.gap-2.font-bold.py-2 class="text-[16px] md:text-[18px]"
-          p = "🗓️"
+          i.flex.h-4.w-4.items-center.justify-center.mt1
+            = icon "calendar-days", class: "text-xl"
           p = "#{content.updated_at.strftime("%d %B %Y")} | 11.00 - 18.00 น."
       div class="text-[#444444] text-base line-clamp-3" = raw(content.description)
       div.flex.gap-2
         div.flex.gap-2
-          p = "❤️"
+          i.flex.h-4.w-4.items-center.justify-center.mt1 type='button' aria-label='Toggle Aside Menu'
+            = icon "heart", class: "text-xl"
           p = 14
         div.flex.gap-2
-          p = "💬"
+          i.flex.h-4.w-4.items-center.justify-center.mt1 type='button' aria-label='Toggle Aside Menu'
+            = icon "chat-bubble-oval-left-ellipsis", class: "text-xl"
           p = 2
     div.overflow-hidden.w-full.lg:w-1/3
       = link_to polymorphic_path(content.contentable) do
