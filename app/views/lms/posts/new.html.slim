@@ -8,14 +8,18 @@ header.sticky.top-0.z-10.flex.justify-between.gap-4.border-b.border-zinc-300/25.
 .container.mx-auto.p-4
   .scroll-mt-offset.col-span-12 
     .text-3xl.font-semibold Create Post
-  .mx-auto.text-center.mt-5 เลือกประเภทของ Content
-  .mx-auto.text-center
-    .mb-2.mt-5
-      = link_to lms.new_article_path, class: "inline-flex items-center justify-center bg-transparent border-2 border-zinc-500/50 text-black dark:text-white hover:border-zinc-500 active:border-zinc-500 px-5 py-1.5 text-base rounded-lg transition-all duration-300 ease-in-out" do
-        div Article
-    .mb-2
-      = link_to lms.new_video_path, class: "inline-flex items-center justify-center bg-transparent border-2 border-zinc-500/50 text-black dark:text-white hover:border-zinc-500 active:border-zinc-500 px-5 py-1.5 text-base rounded-lg transition-all duration-300 ease-in-out" do
-        div Video
-    .mb-2
-      = link_to lms.new_event_path, class: "inline-flex items-center justify-center bg-transparent border-2 border-zinc-500/50 text-black dark:text-white hover:border-zinc-500 active:border-zinc-500 px-5 py-1.5 text-base rounded-lg transition-all duration-300 ease-in-out" do
-        div Event
+  .mx-auto.flex.justify-between.text-center.mt-8.px-16
+    div.flex.flex-col.items-center
+      div class="w-16 h-16 rounded-full bg-gray-300 mb-2"
+      = link_to lms.new_article_path, class: "items-center justify-center bg-transparent text-black dark:text-white rounded-lg transition-all duration-300 ease-in-out" do
+        div class="text-xl" Article
+    div.flex.flex-col.items-center
+      div class="w-16 h-16 rounded-full bg-gray-300 mb-2"
+      = link_to lms.new_video_path, class: "items-center justify-center bg-transparent text-black dark:text-white rounded-lg transition-all duration-300 ease-in-out" do
+        div class="text-xl" Video
+    div.flex.flex-col.items-center
+      div class="w-16 h-16 rounded-full bg-gray-300 mb-2"
+      = link_to lms.new_event_path, class: "items-center justify-center bg-transparent text-black dark:text-white rounded-lg transition-all duration-300 ease-in-out" do
+        div class="text-xl" Eventho
+        
+  .mx-auto.text-center.mt-12.font-bold.text-xl เลือกประเภทของ Content
