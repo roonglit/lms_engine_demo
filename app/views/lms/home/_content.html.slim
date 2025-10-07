@@ -25,7 +25,7 @@
       = link_to polymorphic_path(content.contentable) do
         - if content.cover.attached?
           = image_tag content.cover.url,
-            class: "w-106 aspect-[9/16] object-cover grayscale-0 scale-[1] rounded-[6px] transition-all group-hover:scale-[1.35]",
+            class: "aspect-[9/16] object-cover grayscale-0 scale-[1] rounded-[6px] transition-all",
             onerror: "this.onerror=null;this.src='#{image_path('image-cover-default.png')}';"
         - else
           p place holder
