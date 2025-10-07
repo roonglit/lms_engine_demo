@@ -3,6 +3,10 @@
 @import url("/lms/application/filepond.css");
 @import url("/lms/application/filepond-plugin-image-preview.css");
 
+:root {
+  color-scheme: only light;
+}
+
 @font-face {
   font-family: "krungthai_fastregular";
   src: url("/Krungthai/KrungthaiFastWeb-Regular.woff") format("woff");
@@ -22,6 +26,9 @@
 html,
 body {
   font-family: krungthai_fastregular;
+
+  background-color: white;
+  color: #333333;
 }
 
 input,
