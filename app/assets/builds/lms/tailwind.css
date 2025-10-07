@@ -488,6 +488,9 @@
   .ml-auto {
     margin-left: auto;
   }
+  .bold {
+    font-weight: var(--font-weight-bold);
+  }
   .line-clamp-2 {
     overflow: hidden;
     display: -webkit-box;
