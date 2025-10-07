@@ -1,7 +1,9 @@
 = render "layouts/lms/back_navigation"
 
 - if @article.content.cover.attached?
-  = image_tag @article.content.cover.url, class: "h-60 aspect-[16/9] object-cover grayscale-0 scale-[1] rounded-[6px] transition-all group-hover:grayscale-[100%] group-hover:scale-[1.2]"
+  = image_tag @article.content.cover.url,
+    class: "h-60 aspect-[16/9] object-cover grayscale-0 scale-[1] rounded-[6px] transition-all group-hover:grayscale-[100%] group-hover:scale-[1.2]",
+    onerror: "this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'), {className: 'w-screen h-60 bg-gray-300'}));"
 - else
   .w-screen.h-60.bg-gray-300
 
