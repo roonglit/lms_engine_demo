@@ -1,20 +1,13 @@
+= render "layouts/lms/back_navigation"
+
 - if @article.content.cover.attached?
   = image_tag @article.content.cover.url, class: "h-60 aspect-[16/9] object-cover grayscale-0 scale-[1] rounded-[6px] transition-all group-hover:grayscale-[100%] group-hover:scale-[1.2]"
 - else
   .w-screen.h-60.bg-gray-300
-.w-full.flex-1.flex.flex-col.items-center.justify-between.texts-center.mx-auto.px-8.pb-12
-  .container.max-w-4xl.mx-auto.p-4
-    .text-xl.font-bold.mb-4
-      p = @article.title
-    .flex.items-center.mb-5
-      = icon "user-circle", class: "w-10 h-10 text-gray-500"
-      .ml-2.flex.flex-col
-        .div.flex.gap-2
-          p.text-sm = @article.content.user.email
-          div class="px-2 py-1 bg-[#3756f7] uppercase text-white text-[10px] rounded-[5px]" = "wolf king"
-        p.text-sm = @article.created_at.strftime("%d/%m/%Y")
-    - @article.content.categories.order(:name).each do |category|
-      div class="inline-block mr-2 mb-2 px-2 py-1 bg-gray-500 text-white text-[10px] rounded-[5px]" = category.name
-    p.text-sm = raw(@article.description)
-  / .w-full.max-w-md.mt-30
-  /   = link_to "ต่อไป", "#", class: "block w-full text-center text-md py-3 rounded-sm bg-gray-700 text-white font-semibold"
+
+.container.max-w-4xl.mx-auto.p-4
+  = render "layouts/lms/content_header", email: @article.content.user.email, title: @article.title, created_at: @article.created_at
+
+  - @article.content.categories.order(:name).each do |category|
+    div class="inline-block mr-2 mb-2 px-2 py-1 bg-gray-500 text-white text-[10px] rounded-[5px]" = category.name
+  p.text-sm = raw(@article.description)

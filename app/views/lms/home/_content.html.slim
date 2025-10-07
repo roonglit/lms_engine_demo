@@ -1,5 +1,5 @@
-.flex.flex-col  
-  .flex.mb-7.pb-5.border-b.group.w-full.justify-between.mt-2.gap-4 class="border-[#eeeeee]"
+.flex.flex-col
+  .flex.mb-7.pb-5.border-b.group.w-full.justify-between.gap-4.rounded-2xl.bg-white.p-4.content-card.h-70
     div.w-full.lg:w-2/3
       h3 = link_to content.title, polymorphic_path(content.contentable), 
         class: "text-[20px] font-heading-font mb-8 font-extrabold mt-3 xl:text-[26px] xl:mb-2 text-[#444] transition-all hover:text-[#3756f7]"
@@ -18,14 +18,19 @@
         div.flex.gap-2
           = icon "chat-bubble-oval-left-ellipsis", class: "h-4 w-4 mt-1"
           = 2  
+
       .w-full.flex.items-center
-        div class="p-[1px_8px] bg-zinc-400 uppercase text-black text-[12px] md:text-[14px] rounded-[5px] mt-4 mr-2" = "Design Thinking"
-        div class="p-[1px_8px] bg-zinc-400 uppercase text-black text-[12px] md:text-[14px] rounded-[5px] mt-4 mr-2" = "AI"
-    div.overflow-hidden.w-full.lg:w-1/3
+        div class="p-[1px_8px] bg-zinc-200 uppercase text-black text-[12px] md:text-[14px] rounded-[5px] mt-4 mr-2" = "Design Thinking"
+        div class="p-[1px_8px] bg-zinc-200 uppercase text-black text-[12px] md:text-[14px] rounded-[5px] mt-4 mr-2" = "AI"
+
+    div.overflow-hidden.flex.justify-end
       = link_to polymorphic_path(content.contentable) do
         - if content.cover.attached?
           = image_tag content.cover.url,
-            class: "aspect-[9/16] object-cover grayscale-0 scale-[1] rounded-[6px] transition-all",
+            class: "w-full h-auto object-contain rounded-[6px] transition-all",
             onerror: "this.onerror=null;this.src='#{image_path('image-cover-default.png')}';"
         - else
-          p place holder
+          = image_tag "image-cover-default.png", class: "rounded-lg max-w-sm" 
+
+
+
