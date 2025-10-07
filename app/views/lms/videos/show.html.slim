@@ -1,3 +1,5 @@
+= render "layouts/lms/back_navigation"
+
 - if @video.content.cover.attached?
   = image_tag @video.content.cover.url, class: "h-60 aspect-[16/9] object-cover grayscale-0 scale-[1] rounded-[6px] transition-all group-hover:grayscale-[100%] group-hover:scale-[1.2]"
 - else
