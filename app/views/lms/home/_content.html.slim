@@ -1,32 +1,31 @@
-.flex.flex-col
-  .w-full.flex.justify-between.items-center
-    .flex.items-center
-      span.h-6.w-6.mr-2
-        = icon "user-circle", class: "text-xl"
-      span.transition-all.hover:text-[#3756f7] = content.user.email
-      div class="p-[1px_8px] bg-zinc-400 uppercase text-black text-[12px] md:text-[14px] rounded-[5px] ml-4" = "wolf king"
-    span class="text-base text-[#757575] hidden md:inline" = "สร้างเมื่อ #{content.updated_at.strftime("%d %B %Y")}"
+.flex.flex-col  
   .flex.mb-7.pb-5.border-b.group.w-full.justify-between.mt-2.gap-4 class="border-[#eeeeee]"
     div.w-full.lg:w-2/3
-      h3 = link_to content.title, polymorphic_path(content.contentable), class: "text-[20px] font-heading-font mb-8 font-extrabold mt-3 xl:text-[26px] xl:mb-2 text-[#444] transition-all hover:text-[#3756f7]"
-      div.flex.gap-2
-        div.inline-flex.items-center.gap-2.font-bold.py-2 class="text-[12px] md:text-[14px]"
-          = icon "calendar-days", class: "h-4 w-4"
-          = "#{content.updated_at.strftime("%d %B %Y")}"
-      div class="text-[#444444] text-base line-clamp-3" = raw(content.description)
-      div.flex.gap-2
+      h3 = link_to content.title, polymorphic_path(content.contentable), 
+        class: "text-[20px] font-heading-font mb-8 font-extrabold mt-3 xl:text-[26px] xl:mb-2 text-[#444] transition-all hover:text-[#3756f7]"
+      div class="text-[#444444] text-[12px] text-base line-clamp-2"
+          = raw(content.description)
+      .w-full.flex.justify-between.items-center
+      .flex.items-center.mt-3
+        span.h-6.w-6.mr-2
+          = icon "user-circle", class: "text-xl"
+        span class="text-[12px] transition-all hover:text-[#3756f7]" = content.user.email
+
+      div.flex.gap-2.mt-2
         div.flex.gap-2
           = icon "heart", class: "h-4 w-4 mt-1"
           = 14
         div.flex.gap-2
           = icon "chat-bubble-oval-left-ellipsis", class: "h-4 w-4 mt-1"
-          = 2
-    div.overflow-hidden.w-full.lg:w-1/3
-      = link_to polymorphic_path(content.contentable) do
-        - if content.cover.attached?
-          = image_tag content.cover.url, class: "w-106 aspect-[16/9] object-cover grayscale-0 scale-[1] rounded-[6px] transition-all group-hover:scale-[1.35]"
-        - else
-          p place holder
+          = 2  
       .w-full.flex.items-center
         div class="p-[1px_8px] bg-zinc-400 uppercase text-black text-[12px] md:text-[14px] rounded-[5px] mt-4 mr-2" = "Design Thinking"
         div class="p-[1px_8px] bg-zinc-400 uppercase text-black text-[12px] md:text-[14px] rounded-[5px] mt-4 mr-2" = "AI"
+    div.overflow-hidden.w-full.lg:w-1/3
+      = link_to polymorphic_path(content.contentable) do
+        - if content.cover.attached?
+          = image_tag content.cover.url,
+            class: "w-106 aspect-[9/16] object-cover grayscale-0 scale-[1] rounded-[6px] transition-all group-hover:scale-[1.35]",
+            onerror: "this.onerror=null;this.src='#{image_path('image-cover-default.png')}';"
+        - else
+          p place holder
