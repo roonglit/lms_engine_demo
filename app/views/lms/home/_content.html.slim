@@ -23,14 +23,16 @@
         div class="p-[1px_8px] bg-zinc-200 uppercase text-black text-[12px] md:text-[14px] rounded-[5px] mt-4 mr-2" = "Design Thinking"
         div class="p-[1px_8px] bg-zinc-200 uppercase text-black text-[12px] md:text-[14px] rounded-[5px] mt-4 mr-2" = "AI"
 
-    div.overflow-hidden.flex.justify-end
+    div.flex.justify-end
       = link_to polymorphic_path(content.contentable) do
-        - if content.cover.attached?
-          = image_tag content.cover.url,
-            class: "w-full h-auto object-contain rounded-[6px] transition-all",
-            onerror: "this.onerror=null;this.src='#{image_path('image-cover-default.png')}';"
-        - else
-          = image_tag "image-cover-default.png", class: "rounded-lg max-w-sm" 
+        .w-full
+          - if content.cover.attached?
+            = image_tag content.cover.url,
+              class:"w-full h-60 object-cover rounded-[6px] transition-all",
+              onerror: "this.onerror=null;this.src='#{image_path('image-cover-default.png')}';"
+          - else
+            = image_tag "image-cover-default.png",
+              class: "w-full h-60 object-cover rounded-[6px] transition-all"
 
 
 
