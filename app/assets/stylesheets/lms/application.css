@@ -27,10 +27,11 @@ html,
 body {
   font-family: "krungthai_fast", Arial, sans-serif;
   background-color: #f5f5f5;
-  color: #333333;
+  color: oklch(37.3% 0.034 259.733)
 }
 
 h1, h2, h3, h4, h5, b, strong {
+  color: oklch(13% 0.028 261.692);
   font-weight: 700;
 }
 
