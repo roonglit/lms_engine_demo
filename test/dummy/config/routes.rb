@@ -10,5 +10,5 @@ Rails.application.routes.draw do
     mount Lms::Engine => "/lms"
   end
 
-  root to: "lms/home#index"
+  root to: redirect("/lms")
 end
