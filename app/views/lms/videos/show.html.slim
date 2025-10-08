@@ -1,13 +1,12 @@
-= render "layouts/lms/back_navigation"
+.min-h-25
+  = render "layouts/lms/back_navigation"
 
-- if @video.content.cover.attached?
-  = image_tag @video.content.cover.url,
-    class: "h-60 aspect-[16/9] object-cover grayscale-0 scale-[1] rounded-[6px] transition-all group-hover:grayscale-[100%] group-hover:scale-[1.2]",
-    onerror: "this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'), {className: 'w-screen h-60 bg-gray-300'}));"
-- else
-  .w-screen.h-60.bg-gray-300
+  - if @video.content.cover.attached?
+    = image_tag @video.content.cover.url,
+      class: "h-60 md:h-100 aspect-[16/9] object-cover w-full",
+      onerror: "this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'), {className: 'w-screen h-60 bg-gray-300'}));"
 
-.container.max-w-4xl.mx-auto.p-4
+.container.max-w-4xl.mx-auto.p-4.break-words
   = render "layouts/lms/content_header", email: @video.content.user.email, title: @video.title, created_at: @video.created_at
 
   - if @video.video.attached?

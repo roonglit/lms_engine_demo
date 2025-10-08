@@ -336,9 +336,6 @@
   .ml-2 {
     margin-left: calc(var(--spacing) * 2);
   }
-  .ml-4 {
-    margin-left: calc(var(--spacing) * 4);
-  }
   .line-clamp-2 {
     overflow: hidden;
     display: -webkit-box;
@@ -427,6 +424,9 @@
   .max-h-96 {
     max-height: calc(var(--spacing) * 96);
   }
+  .min-h-25 {
+    min-height: calc(var(--spacing) * 25);
+  }
   .w-1\.5 {
     width: calc(var(--spacing) * 1.5);
   }
@@ -507,9 +507,6 @@
   }
   .grow {
     flex-grow: 1;
-  }
-  .scale-\[1\] {
-    scale: 1;
   }
   .cursor-pointer {
     cursor: pointer;
@@ -855,6 +852,9 @@
     --tw-tracking: var(--tracking-tight);
     letter-spacing: var(--tracking-tight);
   }
+  .break-words {
+    overflow-wrap: break-word;
+  }
   .text-\[\#444\] {
     color: #444;
   }
@@ -897,10 +897,6 @@
   .shadow-md {
     --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
-  }
-  .grayscale-0 {
-    --tw-grayscale: grayscale(0%);
-    filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
   }
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
@@ -947,25 +943,10 @@
       }
     }
   }
-  .group-hover\:scale-\[1\.2\] {
-    &:is(:where(.group):hover *) {
-      @media (hover: hover) {
-        scale: 1.2;
-      }
-    }
-  }
   .group-hover\:text-blue-800 {
     &:is(:where(.group):hover *) {
       @media (hover: hover) {
         color: var(--color-blue-800);
-      }
-    }
-  }
-  .group-hover\:grayscale-\[100\%\] {
-    &:is(:where(.group):hover *) {
-      @media (hover: hover) {
-        --tw-grayscale: grayscale(100%);
-        filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
       }
     }
   }
@@ -1033,6 +1014,11 @@
   .md\:hidden {
     @media (width >= 48rem) {
       display: none;
+    }
+  }
+  .md\:h-100 {
+    @media (width >= 48rem) {
+      height: calc(var(--spacing) * 100);
     }
   }
   .md\:grid-cols-2 {
