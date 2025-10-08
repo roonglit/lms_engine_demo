@@ -1,4 +1,4 @@
-- content_for :title, "Editing course"
+- content_for :title, "Editing article"
 
 .flex.items-center.justify-between 
   h3.text-lg.font-medium Edit Course
@@ -6,10 +6,10 @@
     ul
       li LMS
       li
-        = link_to lms.admin_courses_path do
+        = link_to lms.admin_articles_path do
           | Courses
       li.opacity-80 Edit
 
-= render "form", course: @course do |form|
-  = link_to "Cancel", lms.admin_courses_path, class: "btn btn-ghost"
+= render "form", article: @article do |form|
+  = link_to "Cancel", lms.admin_articles_path, class: "btn btn-ghost"
   = form.submit "Update Course", class: "btn btn-primary"
