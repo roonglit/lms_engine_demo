@@ -1,5 +1,5 @@
 .min-h-25
-  = render "layouts/lms/back_navigation"
+  = render "layouts/lms/back_navigation", path: lms.root_path
 
   - if @video.content.cover.attached?
     = image_tag @video.content.cover.url,
