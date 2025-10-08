@@ -3,7 +3,7 @@
 = simple_form_for article do |form|
   = form.simple_fields_for :content do |content_form|
     div data-controller="filepond"
-      h2 Cover Image
+      h2.text-black Cover Image
       = content_form.file_field :cover, class: "filepond", direct_upload: true, accept: 'image/*', data: { "filepond-target": "input"}
     = content_form.input :title
     .mt-5

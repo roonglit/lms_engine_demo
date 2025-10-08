@@ -3,7 +3,7 @@
 = simple_form_for video do |form|
   = form.simple_fields_for :content do |content_form|
     div data-controller="filepond"
-      h2 Cover Image
+      h2.text-black Cover Image
       - if video.content.cover.attached?
         .mt-5 
           = image_tag video.content.cover.url
@@ -12,7 +12,7 @@
     = content_form.input :description, as: :rich_textarea
   
   .mt-4 data-controller="filepond"
-    h2 Video File
+    h2.text-black Video File
     - if video.video.attached?
       .mt-5 
         = video_tag video.video.url, controls: true, class: "w-full max-h-96"

@@ -3,7 +3,7 @@
 = simple_form_for event do |form|
   = form.simple_fields_for :content do |content_form|
     div data-controller="filepond"
-      h2 Cover Image
+      h2.text-black Cover Image
       - if event.content.cover.attached?
         .mt-5 
           = image_tag event.content.cover.url
