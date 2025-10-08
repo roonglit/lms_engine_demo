@@ -14,13 +14,11 @@
         .flex.flex-row.gap-2.items-center
           = icon "user-circle", class: "text-xl h-6 w-6"
           span.text-sm = content.user.email
+
         h2 = content.title
-        - desc = content.description.to_s
-        - if desc.include?("<img")
-            = "-"
-        - else
-          .line-clamp-2
-            = raw(desc)
+        .line-clamp-2
+          = strip_tags(content.description.to_s)
+
         .flex.flex-1
         .flex.flex-row.gap-4
           .flex.flex-row.gap-2
