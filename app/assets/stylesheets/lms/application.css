@@ -51,7 +51,6 @@ trix-editor {
 .content-card {
   display: flex;
   flex-direction: row-reverse;
-  border-radius: 14px;
   border-color: white;
   background-color: white;
 }
