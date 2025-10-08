@@ -3,23 +3,23 @@
     = notice
 
 .flex.items-center.justify-between
-  h3.text-lg.font-medium Course 
+  h3.text-lg.font-medium Video 
   .breadcrumbs.p-0.text-sm.sm:inline
     ul
       li LMS
       li
-        = link_to "Courses", lms.admin_courses_path
-      li.opacity-80 = @course.title
+        = link_to "Videos", lms.admin_videos_path
+      li.opacity-80 = @video.title
 
 .card.card-border.bg-base-100.shadow.mt-5
   .card-body
-    / Course Header
+    / Video Header
     .flex.flex-col.lg:flex-row.gap-6
-      / Course Cover Image
+      / Video Cover Image
       .flex-shrink-0
-        - if @course.cover.attached?
+        - if @video.cover.attached?
           .w-full.lg:w-64.h-48.rounded-box.overflow-hidden.bg-base-200
-            = image_tag @course.cover.url, alt: @course.title, class: "w-full h-full object-cover"
+            = image_tag @video.cover.url, alt: @video.title, class: "w-full h-full object-cover"
         - else
           .w-full.lg:w-64.h-48.rounded-box.bg-base-200.flex.items-center.justify-center
             span.iconify.lucide--image.size-12.text-base-content/40
@@ -27,82 +27,20 @@
       / Course Information
       .flex-grow
         .flex.items-center.justify-between.mb-4
-          h1.text-2xl.font-bold.text-base-content = @course.title
+          h1.text-2xl.font-bold.text-base-content = @video.title
           .flex.gap-2
-            = link_to "Edit", edit_admin_course_path(@course), class: "btn btn-primary btn-sm"
+            = link_to "Edit", edit_admin_video_path(@video), class: "btn btn-primary btn-sm"
         
-        - if @course.subtitle.present?
-          p.text-lg.text-base-content/70.mb-3 = @course.subtitle
+        - if @video.subtitle.present?
+          p.text-lg.text-base-content/70.mb-3 = @video.subtitle
         
-        - if @course.description.present?
-          p.text-base-content/80.mb-4 = @course.description
+        - if @video.description.present?
+          p.text-base-content/80.mb-4 = raw @video.description
 
-/ Course Content
-- if @course.text_content.present?
-  .card.card-border.bg-base-100.shadow.mt-6
-    .card-body
-      .card-title
-        span.iconify.lucide--file-text.size-5.mr-2
-        | Course Content
-      .prose.max-w-none.mt-4
-        = @course.text_content
+        .mt-6.flex.items-center.justify-center
+          - if @video.video.attached?
+            video.w-full.h-full controls=true
+              source src=main_app.rails_blob_path(@video.video, disposition: "inline") type="video/mp4"
+              | Your browser does not support the video tag.    
 
-/ Course Curriculum
-- if @course.sections.any?
-  .card.card-border.bg-base-100.shadow.mt-6
-    .card-body
-      .card-title.mb-4
-        span.iconify.lucide--book-open.size-5.mr-2
-        | Course Curriculum
-        .badge.badge-primary.badge-outline.ml-2
-          = pluralize(@course.sections.count, 'section')
-      
-      .space-y-2
-        - @course.sections.each_with_index do |section, section_index|
-          .bg-base-200.rounded-box.collapse.collapse-arrow
-            input aria-label="Section toggle" type="checkbox" name="section-#{section.id}" checked=(section_index == 0)
-            .collapse-title.text-lg.font-medium.flex.items-center
-              span.iconify.lucide--folder.size-5.mr-3
-              = section.name
-              - if section.curriculum_items.any?
-                .badge.badge-sm.badge-ghost.ml-auto.mr-4
-                  = pluralize(section.curriculum_items.count, 'item')
-            .collapse-content
-              - if section.curriculum_items.any?
-                .space-y-3.pt-2
-                  - section.curriculum_items.each do |item|
-                    .card.card-compact.bg-base-100.border.border-base-300
-                      .card-body
-                        .flex.items-start.justify-between.mb-3
-                          .flex.items-center.gap-3
-                            - if item.video.attached?
-                              span.iconify.lucide--play-circle.size-5.text-primary
-                            - else
-                              span.iconify.lucide--file-text.size-5.text-base-content/60
-                            h4.font-medium = item.name
-                          - if item.video.attached?
-                            .badge.badge-success.badge-sm Video Available
-                        
-                        / Video Display
-                        - if item.video.attached?
-                          .video-container.mb-3
-                            video(controls class="w-full h-64 rounded-box bg-black")
-                              source src=url_for(item.video.url) type="video/mp4"
-                              | Your browser does not support the video tag.
-                        - else
-                          / Placeholder when no video
-                          .w-full.h-32.rounded-box.bg-base-200.flex.items-center.justify-center.mb-3
-                            .text-center
-                              span.iconify.lucide--video-off.size-8.text-base-content/40.mb-2.block
-                              span.text-sm.text-base-content/60 No video content
-              - else
-                .text-center.py-8.text-base-content/60
-                  span.iconify.lucide--inbox.size-12.mb-2.block
-                  p No curriculum items in this section
-- else
-  .card.card-border.bg-base-100.shadow.mt-6
-    .card-body.text-center.py-12
-      span.iconify.lucide--book-x.size-16.text-base-content/40.mb-4.block
-      h3.text-lg.font-medium.mb-2 No Curriculum Available
-      p.text-base-content/60.mb-4 This course doesn't have any sections or curriculum items yet.
-      = link_to "Add Curriculum", edit_admin_course_path(@course), class: "btn btn-primary"
+

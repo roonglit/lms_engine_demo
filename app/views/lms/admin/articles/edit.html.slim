@@ -1,15 +1,15 @@
 - content_for :title, "Editing article"
 
 .flex.items-center.justify-between 
-  h3.text-lg.font-medium Edit Course
+  h3.text-lg.font-medium Edit Article
   .breadcrumbs.hidden.p-0.text-sm.sm:inline
     ul
       li LMS
       li
         = link_to lms.admin_articles_path do
-          | Courses
+          | Articles
       li.opacity-80 Edit
 
 = render "form", article: @article do |form|
   = link_to "Cancel", lms.admin_articles_path, class: "btn btn-ghost"
-  = form.submit "Update Course", class: "btn btn-primary"
+  = form.submit "Update Article", class: "btn btn-primary"
