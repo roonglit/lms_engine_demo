@@ -1,74 +1,67 @@
 module Lms
   module Admin
     class EventsController < BaseController
-      before_action :set_course, only: %i[ show edit update destroy ]
+      before_action :set_event, only: %i[ show edit update destroy ]
 
-      # GET /admin/courses
+      # GET /admin/events
       def index
-        @courses = Course.all
+        @events = Event.all
       end
 
-      # GET /admin/courses/1
+      # GET /admin/events/1
       def show
       end
 
-      # GET /admin/courses/new
+      # GET /admin/events/new
       def new
-        @course = Course.new(content: Content.new)
+        @event = Event.new(content: Content.new)
       end
 
-      # GET /admin/courses/1/edit
+      # GET /admin/events/1/edit
       def edit
       end
 
-      # POST /admin/courses
+      # POST /admin/events
       def create 
-        @course = Course.new(course_params)
+        @event = Event.new(event_params)
 
-        if @course.save
-          redirect_to @course, notice: "Course was successfully created."
+        if @event.save
+          redirect_to @event, notice: "Event was successfully created."
         else
-          Rails.logger.debug "Course errors: #{@course.errors.full_messages}"
+          Rails.logger.debug "Event errors: #{@event.errors.full_messages}"
           render :new, status: :unprocessable_content
         end
       end
 
-      # PATCH/PUT /admin/courses/1
+      # PATCH/PUT /admin/events/1
       def update
         Rails.logger.debug "Raw params: #{params.inspect}"
-        Rails.logger.debug "Course params: #{course_params.inspect}"
+        Rails.logger.debug "Event params: #{event_params.inspect}"
         
-        if @course.update(course_params)
-          redirect_to @course, notice: "Course was successfully updated.", status: :see_other
+        if @event.update(event_params)
+          redirect_to @event, notice: "Event was successfully updated.", status: :see_other
         else
-          Rails.logger.debug "Course errors: #{@course.errors.full_messages}"
+          Rails.logger.debug "Event errors: #{@event.errors.full_messages}"
           render :edit, status: :unprocessable_content
         end
       end
 
-      # DELETE /admin/courses/1
+      # DELETE /admin/events/1
       def destroy
-        @course.destroy!
-        redirect_to courses_path, notice: "Course was successfully destroyed.", status: :see_other
+        @event.destroy!
+        redirect_to events_path, notice: "Event was successfully destroyed.", status: :see_other
       end
 
       private
         # Use callbacks to share common setup or constraints between actions.
-        def set_course
-          @course = Course.find(params.expect(:id))
+        def set_event
+          @event = Event.find(params.expect(:id))
         end
 
         # Only allow a list of trusted parameters through.
-        def course_params
-          params_with_user = params.expect(course: [ 
-            :text_content, :cover,
+        def event_params
+          params_with_user = params.expect(event: [ 
             content_attributes: [:id, :title, :subtitle, :description, :cover, :user_id, :_destroy],
-            sections_attributes: [[
-              :id, :name, :_destroy,
-              curriculum_items_attributes: [[
-                :id, :name, :_destroy, :video
-              ]]
-            ]]
           ])
           params_with_user[:content_attributes][:user_id] = current_user.id
           params_with_user

@@ -685,9 +685,6 @@
       border-color: color-mix(in oklab, var(--color-zinc-300) 25%, transparent);
     }
   }
-  .bg-\[\#3756f7\] {
-    background-color: #3756f7;
-  }
   .bg-black {
     background-color: var(--color-black);
   }
