@@ -523,6 +523,9 @@
   .shrink-0 {
     flex-shrink: 0;
   }
+  .flex-grow {
+    flex-grow: 1;
+  }
   .grow {
     flex-grow: 1;
   }
@@ -1058,6 +1061,16 @@
         --tw-shadow: 0 20px 25px -5px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 8px 10px -6px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
         box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
       }
+    }
+  }
+  .max-\[400px\]\:h-10 {
+    @media (width < 400px) {
+      height: calc(var(--spacing) * 10);
+    }
+  }
+  .max-\[400px\]\:h-60 {
+    @media (width < 400px) {
+      height: calc(var(--spacing) * 60);
     }
   }
   .max-\[400px\]\:w-full {
