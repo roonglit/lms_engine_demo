@@ -20,6 +20,10 @@
         .line-clamp-2
           = strip_tags(content.description.to_s)
 
+        .flex.flex-row.gap-2
+          .px-4.py-1.bg-gray-200.text-sm.rounded-lg.flex.items-center = "Design Thinking"
+          .px-4.py-1.bg-gray-200.text-sm.rounded-lg.flex.items-center = "AI"
+
         .flex.flex-1
         .flex.flex-row.gap-4
           .flex.flex-row.gap-2
@@ -28,6 +32,3 @@
           .flex.flex-row.gap-2
             = icon "chat-bubble-oval-left-ellipsis", class: "h-6 w-6 text-gray-400", variant: :solid
             = 2
-        .flex.flex-row.gap-2
-          .px-4.py-1.bg-gray-200.text-sm.rounded-lg.flex.items-center = "Design Thinking"
-          .px-4.py-1.bg-gray-200.text-sm.rounded-lg.flex.items-center = "AI"
