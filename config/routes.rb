@@ -1,4 +1,5 @@
 Lms::Engine.routes.draw do
+  get "preview/preview"
 	constraints(->(req) { req.script_name.start_with?('/admin')}) do
 		scope module: 'admin', as: :admin do
 			resources :articles
