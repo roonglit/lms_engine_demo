@@ -6,4 +6,24 @@
       .grid.grid-cols-12.gap-4 
         .col-span-12 
           / Card
-          = render 'form', article: @article, categories: @categories
+          
+          = simple_form_for @article, url: preview_articles_path, method: :post, data: { turbo: false } do |form|
+            = form.simple_fields_for :content do |content_form|
+              div data-controller="filepond"
+                h2.text-black Cover Image
+                = content_form.file_field :cover, class: "filepond", direct_upload: true, accept: 'image/*', data: { "filepond-target": "input"}
+              = content_form.input :title
+              .mt-5
+              = content_form.input :description, as: :rich_textarea
+              
+              p.mt-5 = "Tag Category"
+              = form.simple_fields_for :content do |content_fields|
+                .flex.flex-wrap.gap-2
+                  - @categories.order(:name).each do |category|
+                    - checkbox_id = "#{category.id}"
+                    div.flex.items-center.mb-2
+                      = content_fields.check_box :category_ids, { multiple: true, id: checkbox_id, class: "hidden peer" }, category.id, nil
+                      label.cursor-pointer.select-none.px-5.rounded-md.border.border-gray-300.peer-checked:bg-blue-200.peer-checked:border-gray-500 for=checkbox_id
+                        = category.name
+
+            = form.submit "Next", class: "btn btn-blue w-full btn-primary btn-wide mt-4 max-w-full gap-3 md:mt-6"

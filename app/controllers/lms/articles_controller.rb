@@ -13,6 +13,11 @@ module Lms
     def edit
     end
 
+    def preview
+      @article = Article.new(article_params)
+      render :preview
+    end
+
     def create
       @article = Article.new(article_params)
 
