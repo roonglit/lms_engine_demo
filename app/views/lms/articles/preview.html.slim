@@ -1,0 +1,12 @@
+.min-h-25
+  = render "layouts/lms/back_navigation", path: lms.root_path
+
+div.items-center class="mx-4 xl:mx-64 md:mx-42 sm:36"
+  container.mx-auto.py-4.justify-between
+    .scroll-mt-offset.col-span-12 
+      .text-3xl.font-semibold Create Post
+    .mx-auto.flex.justify-between.text-center.mt-8.px-16
+      = link_to lms.new_article_path, class: "flex flex-col items-center" do
+        div.w-16.h-16.rounded-full.bg-gray-200.flex.items-center.justify-center
+          = image_tag "article.png", class: "w-10 h-10 object-contain"
+        div class="text-xl" class="items-center justify-center bg-transparent text-black rounded-lg transition-all duration-300 ease-in-out" Article
