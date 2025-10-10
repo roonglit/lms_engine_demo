@@ -19,3 +19,7 @@ footer.fixed.inset-x-0.bottom-0.left-0.w-full.bg-white.rounded-t-3xl style="box-
     a href="#" class="flex flex-col items-center justify-center transition duration-300 w-full h-full pt-2 pb-1 text-gray-400 hover:text-gray-900"
       = icon "user-circle", class: "w-6 h-6"
       span.text-sm.font-medium.mt-1 โปรไฟล์
+
+    = link_to main_app.destroy_user_session_path, data: { turbo_method: :delete }, class: "flex flex-col items-center justify-center transition duration-300 w-full h-full pt-2 pb-1 text-gray-400 hover:text-gray-900" do
+      = icon "arrow-right-start-on-rectangle", class: "w-6 h-6"
+      span.text-sm.font-medium.mt-1 ออกจากระบบ
