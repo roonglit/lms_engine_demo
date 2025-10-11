@@ -9,7 +9,7 @@ Lms::Engine.routes.draw do
 		end
 	end
 
-	resources :posts, only: %i[show new]
+	resources :posts, only: %i[show]
 	resources :articles do 
 		post :preview, on: :collection
 	end
