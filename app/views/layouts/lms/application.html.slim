@@ -1,5 +1,5 @@
 doctype html
-html
+html class=(hotwire_native_app? ? "hotwire-native" : nil)
   head
     title = content_for(:title) || "LMS"
     meta name="viewport" content="width=device-width,initial-scale=1"
@@ -14,6 +14,7 @@ html
     = tag.link rel: "manifest", href: main_app.pwa_manifest_path(format: :json)
 
     = stylesheet_link_tag "lms/application", media: "all"
+
     = lms_importmap_tags
   body.h-screen.flex.flex-col
     section.flex.flex-auto.flex-col.size-full

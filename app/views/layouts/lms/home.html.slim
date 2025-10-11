@@ -1,5 +1,5 @@
 doctype html
-html
+html class=(hotwire_native_app? ? "hotwire-native" : nil)
   head
     title = content_for(:title) || "LMS"
     meta name="viewport" content="width=device-width,initial-scale=1"

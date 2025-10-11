@@ -96,6 +96,8 @@
 	}
 }
 
+@variant hn (.hotwire-native &);
+
 @layer utilities {
 	.top-scroll-offset {
 		@apply top-[calc(var(--header-height)+var(--subheader-height))];
