@@ -14,7 +14,9 @@ Lms::Engine.routes.draw do
 		post :preview, on: :collection
 	end
 
-	resources :events
+	resources :events do
+		post :join, on: :member
+	end
   resources :videos
 	resources :categories
   resources :courses, only: %i[index show] do
