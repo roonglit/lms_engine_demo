@@ -163,7 +163,8 @@ module Lms
       end
 
       access_token = token_data["access_token"]
-
+      Rails.cache.write("ms:kanin@odds.com:access_token",access_token,expires_in: 1.hour)
+      
       # 1) เตรียมข้อมูลจาก @event
       event = @event || Event.last
       start_time = Time.zone.parse("#{event.event_date} 09:00").iso8601
@@ -206,6 +207,54 @@ module Lms
       rescue => e
         Rails.logger.error "create_teams_event:: ERROR #{e.class} #{e.message}"
         render json: { success: false, error: e.message }, status: :bad_request and return
+    end
+
+    def add_attendee
+
+      @event = Event.find(params[:id])
+      external_event_id = @event.external_event_id
+      unless external_event_id
+        return redirect_to @event, alert: "ไม่พบ Graph Event ID ของอีเวนต์นี้"
+      end
+
+      base = "https://graph.microsoft.com/v1.0/me/events/#{external_event_id}"
+
+      # email คนเข้าร่วม
+      new_email = "pi@odds.team"
+      new_name = "pi"
+      access_token = Rails.cache.read("ms:kanin@odds.com:access_token")
+
+      # 1) ดึง attendees ปัจจุบัน
+      uri_get = URI("#{base}?$select=attendees")
+      req_get = Net::HTTP::Get.new(uri_get)
+      req_get["Authorization"] = "Bearer #{access_token}"
+
+      attendees = Net::HTTP.start(uri_get.hostname, uri_get.port, use_ssl: true) do |http|
+        res = http.request(req_get)
+        raise(res.body) unless res.is_a?(Net::HTTPSuccess)
+        JSON.parse(res.body).fetch("attendees", [])
+      end
+
+      # 2) merge คนใหม่ (กันซ้ำตาม email)
+      normalized = attendees.index_by { |a| a.dig("emailAddress", "address").to_s.downcase }
+      normalized[new_email.downcase] ||= {
+        "emailAddress" => { "address" => new_email, "name" => new_name },
+        "type" => "required"
+      }
+      merged_attendees = normalized.values
+
+      # 3) PATCH เฉพาะ attendees กลับไป (จะส่งอัปเดตเฉพาะคนที่เปลี่ยน)
+      uri_patch = URI(base)
+      req_patch = Net::HTTP::Patch.new(uri_patch)
+      req_patch["Authorization"] = "Bearer #{access_token}"
+      req_patch["Content-Type"] = "application/json"
+      req_patch.body = { attendees: merged_attendees }.to_json
+
+      Net::HTTP.start(uri_patch.hostname, uri_patch.port, use_ssl: true) do |http|
+        res = http.request(req_patch)
+        raise(res.body) unless res.is_a?(Net::HTTPSuccess)
+        JSON.parse(res.body)
+      end
     end
 
     private
