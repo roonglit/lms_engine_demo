@@ -22,45 +22,6 @@ module Lms
       @categories = Category.all
     end
 
-    def join
-      @event = Event.find(params[:id])
-      external_event_id = @event.external_event_id
-      unless external_event_id
-        return redirect_to @event, alert: "ไม่พบ Graph Event ID ของอีเวนต์นี้"
-      end
-
-      # access_token = 
-      access_token = Rails.cache.read("ms:kanin@odds.com:access_token")
-      uri = URI("https://graph.microsoft.com/v1.0/me/events/#{external_event_id}")
-      req = Net::HTTP::Patch.new(uri)
-      req["Authorization"] = "Bearer #{access_token}"
-      req["Content-Type"] = "application/json"
-
-      req.body = {
-        attendees: [
-          {
-            emailAddress: {
-              address: "pi@odds.team", 
-              name: "ปี"
-            },
-            type: "required"
-          }
-        ]
-      }.to_json
-
-      res = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
-        http.request(req)
-      end
-
-      if res.is_a?(Net::HTTPSuccess)
-        puts "✅ Added attendee successfully"
-        redirect_to @event, notice: "เข้าร่วมอีเวนต์เรียบร้อยแล้ว!"
-      else
-        puts "❌ Failed: #{res.code} - #{res.body}"
-        redirect_to @event, notice: "เข้าร่วมอีเวนต์เรียบร้อยแล้ว!"
-      end
-    end
-
     # POST /events
     def create
       @event = Event.new(event_params)

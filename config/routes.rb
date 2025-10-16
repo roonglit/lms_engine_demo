@@ -15,7 +15,6 @@ Lms::Engine.routes.draw do
 	end
 
 	resources :events do
-		post :join, on: :member
 		post :add_attendee, on: :member 
 	end
   resources :videos
