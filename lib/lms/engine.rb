@@ -30,5 +30,15 @@ module Lms
       app.config.importmap.paths << root.join("config/admin_importmap.rb")
       app.config.importmap.cache_sweepers << root.join("app/javascript")
     end
+
+    initializer "lms.tailwind" do |app|
+      app.config.tailwind_content_paths ||= []
+      app.config.tailwind_content_paths += [
+        root.join("app/views/**/*.{erb,slim}").to_s,
+        root.join("app/components/**/*.rb").to_s,
+        root.join("app/helpers/**/*.rb").to_s,
+        root.join("app/javascript/**/*.js").to_s
+      ]
+    end
   end
 end
