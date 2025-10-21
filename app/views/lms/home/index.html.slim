@@ -1,12 +1,13 @@
 = render "lms/shared/layout_content"
 = content_for :title, "Home"
 
-.flex.justify-between.pt-4
-  h1.flex.items-center
-    = "Content ทั้งหมด"
-  .flex
-    = link_to post_path(:step1), class: "text-white bg-zinc-500 p-2 rounded-full"
-      = icon "plus", class: "text-xl h-10 w-10"
+= render layout: "layouts/lms/lms_wrapper" do
+  .flex.justify-between.pt-4
+    h1.flex.items-center
+      = "Content ทั้งหมด"
+    .flex
+      = link_to post_path(:step1), class: "text-white bg-zinc-500 p-2 rounded-full"
+        = icon "plus", class: "text-xl h-10 w-10"
 
-.mt-4.flex.flex-col.gap-4.pb-20
-  = render partial: "content", collection: @contents
+  .mt-4.flex.flex-col.gap-4.pb-20
+    = render partial: "content", collection: @contents
